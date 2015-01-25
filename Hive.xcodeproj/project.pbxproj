@@ -14,6 +14,13 @@
 		06FE378E1A6E9567006153C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FE378D1A6E9567006153C2 /* Images.xcassets */; };
 		06FE37911A6E9567006153C2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06FE378F1A6E9567006153C2 /* LaunchScreen.xib */; };
 		06FE379D1A6E9567006153C2 /* HiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE379C1A6E9567006153C2 /* HiveTests.m */; };
+		06FE37A71A6E9AB6006153C2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FE37A61A6E9AB6006153C2 /* Social.framework */; };
+		06FE37A91A6E9ABC006153C2 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FE37A81A6E9ABC006153C2 /* Accounts.framework */; };
+		06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37AB1A6E9E46006153C2 /* AccountManager.m */; };
+		06FE37B01A6EB230006153C2 /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37AF1A6EB230006153C2 /* AccountCell.m */; };
+		06FE37B61A6EB87A006153C2 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B31A6EB87A006153C2 /* check.png */; };
+		06FE37B71A6EB87A006153C2 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B41A6EB87A006153C2 /* check@2x.png */; };
+		06FE37B81A6EB87A006153C2 /* check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B51A6EB87A006153C2 /* check@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +47,15 @@
 		06FE37961A6E9567006153C2 /* HiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FE379B1A6E9567006153C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06FE379C1A6E9567006153C2 /* HiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiveTests.m; sourceTree = "<group>"; };
+		06FE37A61A6E9AB6006153C2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		06FE37A81A6E9ABC006153C2 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		06FE37AA1A6E9E46006153C2 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
+		06FE37AB1A6E9E46006153C2 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
+		06FE37AE1A6EB230006153C2 /* AccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCell.h; sourceTree = "<group>"; };
+		06FE37AF1A6EB230006153C2 /* AccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCell.m; sourceTree = "<group>"; };
+		06FE37B31A6EB87A006153C2 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		06FE37B41A6EB87A006153C2 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		06FE37B51A6EB87A006153C2 /* check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FE37A91A6E9ABC006153C2 /* Accounts.framework in Frameworks */,
+				06FE37A71A6E9AB6006153C2 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +81,8 @@
 		06FE37741A6E9567006153C2 = {
 			isa = PBXGroup;
 			children = (
+				06FE37A81A6E9ABC006153C2 /* Accounts.framework */,
+				06FE37A61A6E9AB6006153C2 /* Social.framework */,
 				06FE377F1A6E9567006153C2 /* Hive */,
 				06FE37991A6E9567006153C2 /* HiveTests */,
 				06FE377E1A6E9567006153C2 /* Products */,
@@ -81,14 +101,15 @@
 		06FE377F1A6E9567006153C2 /* Hive */ = {
 			isa = PBXGroup;
 			children = (
+				06FE37AD1A6EB20A006153C2 /* Start screen */,
 				06FE37841A6E9567006153C2 /* AppDelegate.h */,
 				06FE37851A6E9567006153C2 /* AppDelegate.m */,
-				06FE37871A6E9567006153C2 /* ViewController.h */,
-				06FE37881A6E9567006153C2 /* ViewController.m */,
 				06FE378A1A6E9567006153C2 /* Main.storyboard */,
 				06FE378D1A6E9567006153C2 /* Images.xcassets */,
 				06FE378F1A6E9567006153C2 /* LaunchScreen.xib */,
 				06FE37801A6E9567006153C2 /* Supporting Files */,
+				06FE37AA1A6E9E46006153C2 /* AccountManager.h */,
+				06FE37AB1A6E9E46006153C2 /* AccountManager.m */,
 			);
 			path = Hive;
 			sourceTree = "<group>";
@@ -96,6 +117,7 @@
 		06FE37801A6E9567006153C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				06FE37B11A6EB87A006153C2 /* Resources */,
 				06FE37811A6E9567006153C2 /* Info.plist */,
 				06FE37821A6E9567006153C2 /* main.m */,
 			);
@@ -117,6 +139,35 @@
 				06FE379B1A6E9567006153C2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06FE37AD1A6EB20A006153C2 /* Start screen */ = {
+			isa = PBXGroup;
+			children = (
+				06FE37871A6E9567006153C2 /* ViewController.h */,
+				06FE37881A6E9567006153C2 /* ViewController.m */,
+				06FE37AE1A6EB230006153C2 /* AccountCell.h */,
+				06FE37AF1A6EB230006153C2 /* AccountCell.m */,
+			);
+			name = "Start screen";
+			sourceTree = "<group>";
+		};
+		06FE37B11A6EB87A006153C2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				06FE37B21A6EB87A006153C2 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		06FE37B21A6EB87A006153C2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				06FE37B31A6EB87A006153C2 /* check.png */,
+				06FE37B41A6EB87A006153C2 /* check@2x.png */,
+				06FE37B51A6EB87A006153C2 /* check@3x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +250,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FE37B71A6EB87A006153C2 /* check@2x.png in Resources */,
 				06FE378C1A6E9567006153C2 /* Main.storyboard in Resources */,
+				06FE37B81A6EB87A006153C2 /* check@3x.png in Resources */,
 				06FE37911A6E9567006153C2 /* LaunchScreen.xib in Resources */,
+				06FE37B61A6EB87A006153C2 /* check.png in Resources */,
 				06FE378E1A6E9567006153C2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +276,8 @@
 				06FE37891A6E9567006153C2 /* ViewController.m in Sources */,
 				06FE37861A6E9567006153C2 /* AppDelegate.m in Sources */,
 				06FE37831A6E9567006153C2 /* main.m in Sources */,
+				06FE37B01A6EB230006153C2 /* AccountCell.m in Sources */,
+				06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Hive/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -356,6 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Hive/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
