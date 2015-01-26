@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class HVObjectMapping;
+
 @interface HVRelationshipMapping : NSObject
+
++ (instancetype) relationshipFromPath:(NSString *)sourcePath withMapping:(HVObjectMapping *)mapping;
+
+- (NSDictionary *) dictionaryRepresentation;
 
 @end

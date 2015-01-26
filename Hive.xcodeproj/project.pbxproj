@@ -18,6 +18,7 @@
 		060E0C671A76D99300A95453 /* HVRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C661A76D99300A95453 /* HVRelationshipMapping.m */; };
 		060E0C691A76E20C00A95453 /* HVMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C681A76E20C00A95453 /* HVMappingTests.m */; };
 		060E0C6C1A76E30900A95453 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 060E0C6B1A76E30900A95453 /* MOCK_DATA.json */; };
+		060E0C6F1A76E71200A95453 /* HVMappingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C6E1A76E71200A95453 /* HVMappingResult.m */; };
 		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
 		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
 		066DD7D61A75298D003862CF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D51A75298D003862CF /* TweetCell.m */; };
@@ -76,6 +77,8 @@
 		060E0C661A76D99300A95453 /* HVRelationshipMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVRelationshipMapping.m; sourceTree = "<group>"; };
 		060E0C681A76E20C00A95453 /* HVMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVMappingTests.m; sourceTree = "<group>"; };
 		060E0C6B1A76E30900A95453 /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
+		060E0C6D1A76E71200A95453 /* HVMappingResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVMappingResult.h; sourceTree = "<group>"; };
+		060E0C6E1A76E71200A95453 /* HVMappingResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVMappingResult.m; sourceTree = "<group>"; };
 		06584FAB1A752FE8001974AB /* HiveDataProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiveDataProviderProtocol.h; sourceTree = "<group>"; };
 		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				060E0C631A76D98500A95453 /* HVObjectMapping.m */,
 				060E0C651A76D99300A95453 /* HVRelationshipMapping.h */,
 				060E0C661A76D99300A95453 /* HVRelationshipMapping.m */,
+				060E0C6D1A76E71200A95453 /* HVMappingResult.h */,
+				060E0C6E1A76E71200A95453 /* HVMappingResult.m */,
 			);
 			name = "Mapping orm";
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 				06FE37891A6E9567006153C2 /* ViewController.m in Sources */,
 				066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */,
 				066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */,
+				060E0C6F1A76E71200A95453 /* HVMappingResult.m in Sources */,
 				06FE37BC1A74F0CD006153C2 /* DataManager.m in Sources */,
 				060E0C5A1A76D2DC00A95453 /* HVMapperManager.m in Sources */,
 				060E0C641A76D98500A95453 /* HVObjectMapping.m in Sources */,

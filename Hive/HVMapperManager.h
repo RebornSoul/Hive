@@ -7,9 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HVObjectMapping.h"
+#import "HVMappingRoute.h"
+#import "HVRelationshipMapping.h"
+
+@class HVMappingResult;
 
 @interface HVMapperManager : NSObject
 
 + (HVMapperManager *)  sharedInstance;
+
+- (void) performMappingWithRoute:(HVMappingRoute *)route forData:(NSData *)rawData
+                  withCompletion:(void(^)(HVMappingResult *result))completionBlock
+                         failure:(void(^)(NSError *error))failureBlock;
 
 @end

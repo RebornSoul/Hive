@@ -7,10 +7,12 @@
 //
 
 #import "HVObjectMapping.h"
+#import "HVRelationshipMapping.h"
 
 @interface HVObjectMapping ()
 @property (nonatomic, assign) Class targetClass;
 @property (nonatomic, strong) NSDictionary *mappingAttributes;
+@property (nonatomic, strong) NSDictionary *relationshipDictionary; // relationship key ->> object mapping
 @end
 
 @implementation HVObjectMapping
@@ -41,6 +43,13 @@
 - (void) commitMappingFromKey:(NSString *)sourceKey toKey:(NSString *)destinationKey {
     NSMutableDictionary *mutableCopy = [self.mappingAttributes mutableCopy];
     [mutableCopy setObject:destinationKey forKey:sourceKey];
+    self.mappingAttributes = [NSDictionary dictionaryWithDictionary:mutableCopy];
+}
+
+- (void) addRelationshipMapping:(HVRelationshipMapping *)relationshipMapping {
+    NSMutableDictionary *mutableCopy = [self.relationshipDictionary mutableCopy];
+    [mutableCopy addEntriesFromDictionary:[relationshipMapping dictionaryRepresentation]];
+    self.relationshipDictionary = [NSDictionary dictionaryWithDictionary:mutableCopy];
 }
 
 @end

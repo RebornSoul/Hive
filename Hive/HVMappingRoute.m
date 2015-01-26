@@ -11,23 +11,30 @@
 @interface HVMappingRoute ()
 
 @property (nonatomic, assign) Class targetClass;
-@property (nonatomic, strong) NSDictionary *routeMap;
-
+@property (nonatomic, strong) NSString *rootPath;
+@property (nonatomic, strong) NSArray *mappingStack;
 @end
 
 @implementation HVMappingRoute
 
-- (id) initWithTargetClass:(Class)class routeMap:(NSDictionary *)routeMap {
+- (id) initWithTargetClass:(Class)aClass rootPath:(NSString *)rootPath {
     self = [super init];
     if (self) {
-        self.targetClass = class;
-        self.routeMap = routeMap;
+        self.targetClass = aClass;
+        self.rootPath = rootPath;
+        self.mappingStack = [NSArray new];
     }
     return self;
 }
 
-+ (instancetype) routeForClass:(Class)class withMap:(NSDictionary *)routeMap {
-    return [[HVMappingRoute alloc] initWithTargetClass:class routeMap:routeMap];
++ (instancetype) routeForClass:(Class)aClass rootPath:(NSString *)rootPath {
+    return [[HVMappingRoute alloc] initWithTargetClass:aClass rootPath:rootPath];
+}
+
+- (void) addObjectMapping:(HVObjectMapping *)objectMapping {
+    NSMutableArray *mutableCopy = [self.mappingStack mutableCopy];
+    [mutableCopy addObject:objectMapping];
+    self.mappingStack = [NSArray arrayWithArray:mutableCopy];
 }
 
 @end

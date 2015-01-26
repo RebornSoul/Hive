@@ -10,9 +10,26 @@
 #import <XCTest/XCTest.h>
 #import "HVMapperManager.h"
 
+#define ASYNC_TIMEOUT_SEC 5
+
+@interface HVMockObject : NSObject
+@property (nonatomic, strong) NSString *idString;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *country;
+@property (nonatomic, strong) NSDate *createdDate;
+@property (nonatomic, assign) BOOL verified;
+@property (nonatomic, strong) NSString *descriptionText;
+@end
+
+@implementation HVMockObject
+@end
+
 @interface HVMappingTests : XCTestCase
 @property (nonatomic, strong) HVMapperManager *mapperManager;
 @property (nonatomic, strong) id parsedJson;
+@property (nonatomic, strong) HVMappingRoute *mappingRoute;
 @end
 
 @implementation HVMappingTests
@@ -28,6 +45,22 @@
     // Create mapper manager instance
     self.mapperManager = [HVMapperManager sharedInstance];
     
+    // Create mapping mock
+    HVObjectMapping *mapping = [[HVObjectMapping alloc] initWithTargetClass:[HVMockObject class]];
+    [mapping addAttributedMappingFromDictionary:@{
+                                                  @"id":@"idString",
+                                                  @"first_name":@"name",
+                                                  @"last_name":@"lastName",
+                                                  @"email":@"email",
+                                                  @"country":@"country",
+                                                  @"created_date":@"createdDate",
+                                                  @"verified":@"verified",
+                                                  @"description":@"descriptionText"
+                                                  }];
+    HVMappingRoute *route = [HVMappingRoute routeForClass:[HVMockObject class] rootPath:nil];
+    [route addObjectMapping:mapping];
+    self.mappingRoute = route;
+    
 }
 
 - (void)tearDown {
@@ -37,7 +70,14 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Mapping operation"];
+    [self waitForExpectationsWithTimeout:ASYNC_TIMEOUT_SEC handler:^(NSError *error) {
+        [self.mapperManager performMappingWithRoute:self.mappingRoute forData:self.parsedJson withCompletion:^(HVMappingResult *result) {
+            [expectation fulfill];
+        } failure:^(NSError *error) {
+            XCTFail(@"Fail");
+        }];
+    }];
 }
 
 - (void)testPerformanceExample {

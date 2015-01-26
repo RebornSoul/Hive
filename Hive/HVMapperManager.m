@@ -7,6 +7,7 @@
 //
 
 #import "HVMapperManager.h"
+#import "HVMappingOperation.h"
 
 static HVMapperManager *instanceMapperManager = nil;
 
@@ -21,8 +22,19 @@ static HVMapperManager *instanceMapperManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instanceMapperManager = [[HVMapperManager alloc] init];
+        instanceMapperManager.mappingOperationQueue = [NSOperationQueue new];
     });
     return instanceMapperManager;
+}
+
+- (void) performMappingWithRoute:(HVMappingRoute *)route forData:(NSData *)rawData
+                  withCompletion:(void(^)(HVMappingResult *result))completionBlock
+                         failure:(void(^)(NSError *error))failureBlock {
+    
+}
+
+- (void) enqueueMappingOperation:(HVMappingOperation *)mappingOperation {
+    [self.mappingOperationQueue addOperation:mappingOperation];
 }
 
 @end

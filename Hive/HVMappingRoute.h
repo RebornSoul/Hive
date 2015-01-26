@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class HVObjectMapping;
+
 @interface HVMappingRoute : NSObject
 
-+ (instancetype) routeForClass:(Class)class withMap:(NSDictionary *)routeMap;
++ (instancetype) routeForClass:(Class)aClass rootPath:(NSString *)rootPath;
+
+- (void) addObjectMapping:(HVObjectMapping *)objectMapping;
 
 @end

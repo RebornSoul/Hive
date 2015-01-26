@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class HVRelationshipMapping;
+
 @interface HVObjectMapping : NSObject
 
 @property (nonatomic, strong) NSString *identificationAttribute;
@@ -17,5 +19,7 @@
 - (void) addAttributedMappingFromDictionary:(NSDictionary *)dictionary;
 - (void) addAttributedMappingFromKey:(NSString *)sourceKey
                                toKey:(NSString *)destinationKey;
+
+- (void) addRelationshipMapping:(HVRelationshipMapping *)relationshipMapping;
 
 @end
