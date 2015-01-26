@@ -35,9 +35,11 @@
     
     [AccountManager getListOfAccountsWithCompletion:^(NSArray *accounts) {
         if (accounts.count) {
-            [self.activityIndicator stopAnimating];
-            self.fetchedAccounts = accounts;
-            [self.accountsTable reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressView setHidden:YES];
+                self.fetchedAccounts = accounts;
+                [self.accountsTable reloadData];
+            });
         }
     } failure:^(NSError *error) {
         [self presentError:error];
