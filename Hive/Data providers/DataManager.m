@@ -9,7 +9,7 @@
 #import "DataManager.h"
 #import <Social/Social.h>
 
-#define TWITTER_PATH @"https://userstream.twitter.com/1.1/user.json"
+#define TWITTER_PATH @"https://api.twitter.com/1.1/statuses/user_timeline.json"
 
 @implementation DataManager
 
@@ -24,7 +24,10 @@
     NSURL *url = [NSURL URLWithString:TWITTER_PATH];
     
     //  Build the request with our parameter
-    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:url parameters:params];
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodGET
+                                                      URL:url
+                                               parameters:params];
                           
     
     // Attach the account object to this request

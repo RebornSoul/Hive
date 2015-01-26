@@ -39,7 +39,7 @@ typedef void (^HVErrorBlock)(NSError *error);
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, copy) HVConfigureCellBlock configureCellBlock;
-@property (nonatomic, copy) HVNewDataBlock newDataBlock;
+@property (nonatomic, copy) HVNewDataBlock newDataReceivedBlock;
 @property (nonatomic, copy) HVErrorBlock errorBlock;
 
 @end
@@ -71,7 +71,7 @@ typedef void (^HVErrorBlock)(NSError *error);
 // In this method we construct data request and wait for response
 - (void)fetchRemoteData {
     [DataManager retrieveAccountFeed:self.currentAccount withCompletion:^(NSData *responseData) {
-        self.newDataBlock (responseData);
+        self.newDataReceivedBlock (responseData);
     } failure:^(NSError *error) {
         self.errorBlock (error);
     }];
@@ -82,11 +82,13 @@ typedef void (^HVErrorBlock)(NSError *error);
     self.configureCellBlock = ^(UITableViewCell *cell, kTweetTableCellType cellType, NSIndexPath *indexPath) {
         
     };
-    self.newDataBlock = ^(NSData *responseData) {
+    self.newDataReceivedBlock = ^(NSData *responseData) {
         NSError *jsonParsingError;
         NSDictionary *userTimeline = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
         
-            NSLog(@"%@", userTimeline);
+        NSString *responseText = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        
+            NSLog(@"%@", responseText);
             //Fill singleTweet with user content
             //initWithUserContent is a custom method I wrote to parse apart the User data
             //Tweet is a custom class I wrote to hold data about a particular tweet
