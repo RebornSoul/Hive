@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
+		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
+		066DD7D61A75298D003862CF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D51A75298D003862CF /* TweetCell.m */; };
+		066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D81A75299B003862CF /* MoreToSeeCell.m */; };
+		066DD7DC1A7529BF003862CF /* UserSurveyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7DB1A7529BF003862CF /* UserSurveyCell.m */; };
+		066DD7DF1A7529DA003862CF /* PaginationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7DE1A7529DA003862CF /* PaginationCell.m */; };
+		066DD7E41A752E2D003862CF /* TweetTableDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7E31A752E2D003862CF /* TweetTableDataProvider.m */; };
 		06FE37831A6E9567006153C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37821A6E9567006153C2 /* main.m */; };
 		06FE37861A6E9567006153C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37851A6E9567006153C2 /* AppDelegate.m */; };
 		06FE37891A6E9567006153C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37881A6E9567006153C2 /* ViewController.m */; };
@@ -21,6 +28,10 @@
 		06FE37B61A6EB87A006153C2 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B31A6EB87A006153C2 /* check.png */; };
 		06FE37B71A6EB87A006153C2 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B41A6EB87A006153C2 /* check@2x.png */; };
 		06FE37B81A6EB87A006153C2 /* check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B51A6EB87A006153C2 /* check@3x.png */; };
+		06FE37BC1A74F0CD006153C2 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37BB1A74F0CD006153C2 /* DataManager.m */; };
+		06FE37BF1A74F127006153C2 /* DataRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37BE1A74F127006153C2 /* DataRouter.m */; };
+		06FE37C21A74F2F2006153C2 /* TwitterDataProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37C11A74F2F2006153C2 /* TwitterDataProtocol.m */; };
+		06FE37C51A74F354006153C2 /* StreamDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37C41A74F354006153C2 /* StreamDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +45,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06584FAB1A752FE8001974AB /* HiveDataProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiveDataProviderProtocol.h; sourceTree = "<group>"; };
+		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		066DD7D11A752974003862CF /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTableViewController.h; sourceTree = "<group>"; };
+		066DD7D21A752974003862CF /* TwitterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterTableViewController.m; sourceTree = "<group>"; };
+		066DD7D41A75298D003862CF /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		066DD7D51A75298D003862CF /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		066DD7D71A75299B003862CF /* MoreToSeeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreToSeeCell.h; sourceTree = "<group>"; };
+		066DD7D81A75299B003862CF /* MoreToSeeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreToSeeCell.m; sourceTree = "<group>"; };
+		066DD7DA1A7529BF003862CF /* UserSurveyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSurveyCell.h; sourceTree = "<group>"; };
+		066DD7DB1A7529BF003862CF /* UserSurveyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSurveyCell.m; sourceTree = "<group>"; };
+		066DD7DD1A7529DA003862CF /* PaginationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationCell.h; sourceTree = "<group>"; };
+		066DD7DE1A7529DA003862CF /* PaginationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaginationCell.m; sourceTree = "<group>"; };
+		066DD7E21A752E2D003862CF /* TweetTableDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTableDataProvider.h; sourceTree = "<group>"; };
+		066DD7E31A752E2D003862CF /* TweetTableDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableDataProvider.m; sourceTree = "<group>"; };
 		06FE377D1A6E9567006153C2 /* Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FE37811A6E9567006153C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06FE37821A6E9567006153C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -56,6 +82,14 @@
 		06FE37B31A6EB87A006153C2 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		06FE37B41A6EB87A006153C2 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		06FE37B51A6EB87A006153C2 /* check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@3x.png"; sourceTree = "<group>"; };
+		06FE37BA1A74F0CD006153C2 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = "Data providers/DataManager.h"; sourceTree = "<group>"; };
+		06FE37BB1A74F0CD006153C2 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = "Data providers/DataManager.m"; sourceTree = "<group>"; };
+		06FE37BD1A74F127006153C2 /* DataRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataRouter.h; sourceTree = "<group>"; };
+		06FE37BE1A74F127006153C2 /* DataRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataRouter.m; sourceTree = "<group>"; };
+		06FE37C01A74F2F2006153C2 /* TwitterDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterDataProtocol.h; sourceTree = "<group>"; };
+		06FE37C11A74F2F2006153C2 /* TwitterDataProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterDataProtocol.m; sourceTree = "<group>"; };
+		06FE37C31A74F353006153C2 /* StreamDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDataManager.h; sourceTree = "<group>"; };
+		06FE37C41A74F354006153C2 /* StreamDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +112,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06584FAC1A76BCAA001974AB /* View controllers */ = {
+			isa = PBXGroup;
+			children = (
+				06584FAD1A76BCBB001974AB /* Container controller */,
+				066DD7D01A752923003862CF /* Tweet deck */,
+				066DD7CF1A752919003862CF /* Tweet table */,
+				06FE37AD1A6EB20A006153C2 /* Start screen */,
+			);
+			name = "View controllers";
+			sourceTree = "<group>";
+		};
+		06584FAD1A76BCBB001974AB /* Container controller */ = {
+			isa = PBXGroup;
+			children = (
+				06584FAE1A76BCD9001974AB /* ContainerViewController.h */,
+				06584FAF1A76BCD9001974AB /* ContainerViewController.m */,
+			);
+			name = "Container controller";
+			sourceTree = "<group>";
+		};
+		066DD7CF1A752919003862CF /* Tweet table */ = {
+			isa = PBXGroup;
+			children = (
+				066DD7D11A752974003862CF /* TwitterTableViewController.h */,
+				066DD7D21A752974003862CF /* TwitterTableViewController.m */,
+				066DD7D41A75298D003862CF /* TweetCell.h */,
+				066DD7D51A75298D003862CF /* TweetCell.m */,
+				066DD7D71A75299B003862CF /* MoreToSeeCell.h */,
+				066DD7D81A75299B003862CF /* MoreToSeeCell.m */,
+				066DD7DA1A7529BF003862CF /* UserSurveyCell.h */,
+				066DD7DB1A7529BF003862CF /* UserSurveyCell.m */,
+				066DD7DD1A7529DA003862CF /* PaginationCell.h */,
+				066DD7DE1A7529DA003862CF /* PaginationCell.m */,
+			);
+			name = "Tweet table";
+			sourceTree = "<group>";
+		};
+		066DD7D01A752923003862CF /* Tweet deck */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Tweet deck";
+			sourceTree = "<group>";
+		};
+		066DD7E01A752C2E003862CF /* Data providers */ = {
+			isa = PBXGroup;
+			children = (
+				066DD7E21A752E2D003862CF /* TweetTableDataProvider.h */,
+				066DD7E31A752E2D003862CF /* TweetTableDataProvider.m */,
+				06584FAB1A752FE8001974AB /* HiveDataProviderProtocol.h */,
+			);
+			name = "Data providers";
+			sourceTree = "<group>";
+		};
 		06FE37741A6E9567006153C2 = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +189,9 @@
 		06FE377F1A6E9567006153C2 /* Hive */ = {
 			isa = PBXGroup;
 			children = (
-				06FE37AD1A6EB20A006153C2 /* Start screen */,
+				06584FAC1A76BCAA001974AB /* View controllers */,
+				066DD7E01A752C2E003862CF /* Data providers */,
+				06FE37B91A74F084006153C2 /* Data managers */,
 				06FE37841A6E9567006153C2 /* AppDelegate.h */,
 				06FE37851A6E9567006153C2 /* AppDelegate.m */,
 				06FE378A1A6E9567006153C2 /* Main.storyboard */,
@@ -168,6 +258,21 @@
 				06FE37B51A6EB87A006153C2 /* check@3x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		06FE37B91A74F084006153C2 /* Data managers */ = {
+			isa = PBXGroup;
+			children = (
+				06FE37BA1A74F0CD006153C2 /* DataManager.h */,
+				06FE37BB1A74F0CD006153C2 /* DataManager.m */,
+				06FE37BD1A74F127006153C2 /* DataRouter.h */,
+				06FE37BE1A74F127006153C2 /* DataRouter.m */,
+				06FE37C01A74F2F2006153C2 /* TwitterDataProtocol.h */,
+				06FE37C11A74F2F2006153C2 /* TwitterDataProtocol.m */,
+				06FE37C31A74F353006153C2 /* StreamDataManager.h */,
+				06FE37C41A74F354006153C2 /* StreamDataManager.m */,
+			);
+			name = "Data managers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,10 +379,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				06FE37891A6E9567006153C2 /* ViewController.m in Sources */,
+				066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */,
+				066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */,
+				06FE37BC1A74F0CD006153C2 /* DataManager.m in Sources */,
+				066DD7D61A75298D003862CF /* TweetCell.m in Sources */,
 				06FE37861A6E9567006153C2 /* AppDelegate.m in Sources */,
+				06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */,
+				06FE37BF1A74F127006153C2 /* DataRouter.m in Sources */,
 				06FE37831A6E9567006153C2 /* main.m in Sources */,
+				066DD7DC1A7529BF003862CF /* UserSurveyCell.m in Sources */,
+				066DD7DF1A7529DA003862CF /* PaginationCell.m in Sources */,
+				066DD7E41A752E2D003862CF /* TweetTableDataProvider.m in Sources */,
+				06FE37C51A74F354006153C2 /* StreamDataManager.m in Sources */,
 				06FE37B01A6EB230006153C2 /* AccountCell.m in Sources */,
 				06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */,
+				06FE37C21A74F2F2006153C2 /* TwitterDataProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +588,7 @@
 				06FE37A21A6E9567006153C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06FE37A31A6E9567006153C2 /* Build configuration list for PBXNativeTarget "HiveTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +597,7 @@
 				06FE37A51A6E9567006153C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,7 +10,8 @@
 
 @implementation AccountCell
 
-- (void) setSelected:(BOOL)selected {
+- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
     [self.checkImage setHidden:!selected];
 }
 

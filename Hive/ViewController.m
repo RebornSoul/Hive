@@ -10,15 +10,17 @@
 #import <Accounts/Accounts.h>
 #import "AccountManager.h"
 #import "AccountCell.h"
+#import "ContainerViewController.h"
 
 #define kCellId @"AccountCell"
 #define kDefCellHeight 44.0f
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak) IBOutlet UIView *progressView;
-@property (nonatomic, weak) IBOutlet UIView *logoView;
 @property (nonatomic, strong) NSArray *fetchedAccounts;
 @property (nonatomic, weak) IBOutlet UITableView *accountsTable;
+@property (nonatomic, weak) IBOutlet UIButton *startButton;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation ViewController
@@ -33,6 +35,7 @@
     
     [AccountManager getListOfAccountsWithCompletion:^(NSArray *accounts) {
         if (accounts.count) {
+            [self.activityIndicator stopAnimating];
             self.fetchedAccounts = accounts;
             [self.accountsTable reloadData];
         }
@@ -68,6 +71,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kDefCellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.startButton setEnabled:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ContainerViewController *containerVC = [segue destinationViewController];
+    ACAccount *account = [self.fetchedAccounts objectAtIndex:self.accountsTable.indexPathForSelectedRow.row];
+    containerVC.currentAccount = account;
 }
 
 @end
