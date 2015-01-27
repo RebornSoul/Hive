@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TwitterDataProtocol.h"
 
-@interface DataManager : NSObject <TwitterDataProtocol>
+@class ACAccount;
 
+@interface DataManager : NSObject
++ (void) retrieveAccountFeed:(ACAccount *)account
+              withCompletion:(void(^)(NSData *responseData))completionBlock
+                     failure:(void(^)(NSError *error))failureBlock;
 @end

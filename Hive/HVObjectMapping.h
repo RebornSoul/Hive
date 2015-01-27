@@ -12,6 +12,7 @@
 
 @interface HVObjectMapping : NSObject
 
+@property (nonatomic, assign, readonly) Class targetClass;
 @property (nonatomic, strong) NSString *identificationAttribute;
 
 - (id) initWithTargetClass:(Class)aClass;

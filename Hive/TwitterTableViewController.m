@@ -8,6 +8,10 @@
 
 #import "TwitterTableViewController.h"
 #import "DataManager.h"
+#import "DumpMapper.h"
+#import "Tweet.h"
+#import "User.h"
+#import "TweetCell.h"
 
 typedef NS_ENUM(NSUInteger, kTweetTableCellType) {
     kTweetTableCellTypeNormal = 1,
@@ -21,18 +25,18 @@ NSString * const HVMoreCellIdentifier   = @"MoreCell";
 NSString * const HVLoaderCellIdentifier = @"LoaderCell";
 NSString * const HVSurveyCellIdentifier = @"SurveyCell";
 
-typedef void (^HVConfigureCellBlock)(UITableViewCell *cell, kTweetTableCellType cellType, NSIndexPath *indexPath);
-typedef void (^HVNewDataBlock)(NSData *responseData);
-typedef void (^HVErrorBlock)(NSError *error);
-
-
 @interface HVDataNode : NSObject
 @property (nonatomic, strong) NSDictionary *metaData;
+@property (nonatomic, strong) Tweet *tweet;
 @property (nonatomic, assign) kTweetTableCellType nodeType;
 @end
 
 @implementation HVDataNode
 @end
+
+typedef void (^HVConfigureCellBlock)(UITableViewCell *cell, HVDataNode *dataNode, NSIndexPath *indexPath);
+typedef void (^HVNewDataBlock)(NSData *responseData);
+typedef void (^HVErrorBlock)(NSError *error);
 
 @interface TwitterTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -79,19 +83,30 @@ typedef void (^HVErrorBlock)(NSError *error);
 
 - (void) setupDataProvider {
     self.dataArray = [NSArray new];
-    self.configureCellBlock = ^(UITableViewCell *cell, kTweetTableCellType cellType, NSIndexPath *indexPath) {
-        
+    self.configureCellBlock = ^(UITableViewCell *cell, HVDataNode *node, NSIndexPath *indexPath) {
+        switch (node.nodeType) {
+            case kTweetTableCellTypeNormal:
+            {
+                TweetCell *tweetCell = (TweetCell *)cell;
+                [tweetCell.tweetTextView setText:node.tweet.text];
+                [tweetCell.usernameLabel setText:[NSString stringWithFormat:@"%@ %@", node.tweet.user.name, node.tweet.user.screenName]];
+            }
+                break;
+            
+            default:
+                break;
+        }
     };
+    __weak __typeof(self) weakSelf = self;
+    
     self.newDataReceivedBlock = ^(NSData *responseData) {
-        NSError *jsonParsingError;
-        NSDictionary *userTimeline = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
         
-        NSString *responseText = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        
-            NSLog(@"%@", responseText);
-            //Fill singleTweet with user content
-            //initWithUserContent is a custom method I wrote to parse apart the User data
-            //Tweet is a custom class I wrote to hold data about a particular tweet
+        [DumpMapper performFeedMappingWithData:responseData withCompletion:^(NSArray *result) {
+            weakSelf.dataArray = [weakSelf nodeArrayFromParsedData:result];
+            [weakSelf.tableView reloadData];
+        } failure:^(NSError *error) {
+            weakSelf.errorBlock (error);
+        }];
     };
     self.errorBlock = ^(NSError *error) {
         [[[UIAlertView alloc] initWithTitle:@"Error"
@@ -100,6 +115,17 @@ typedef void (^HVErrorBlock)(NSError *error);
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil, nil] show];
     };
+}
+
+- (NSArray *) nodeArrayFromParsedData:(NSArray *)parsedData {
+    NSMutableArray *returnedArray = [NSMutableArray new];
+    for (Tweet *tw in parsedData) {
+        HVDataNode *node = [HVDataNode new];
+        node.tweet = tw;
+        node.nodeType = kTweetTableCellTypeNormal;
+        [returnedArray addObject:node];
+    }
+    return [NSArray arrayWithArray:returnedArray];
 }
 
 /*
@@ -123,8 +149,12 @@ typedef void (^HVErrorBlock)(NSError *error);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HVDataNode *node = self.dataArray[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self cellIdentifierForCellType:node.nodeType]];
-    self.configureCellBlock (cell, node.nodeType, indexPath);
+    self.configureCellBlock (cell, node, indexPath);
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 120.0f;
 }
 
 #pragma mark - custom methods

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		060E0C491A76CEE400A95453 /* TwitterFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C481A76CEE400A95453 /* TwitterFeedParser.m */; };
 		060E0C501A76D06A00A95453 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C4F1A76D06A00A95453 /* Tweet.m */; };
 		060E0C531A76D07B00A95453 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C521A76D07B00A95453 /* User.m */; };
 		060E0C571A76D2A800A95453 /* TwitterFeedMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C561A76D2A800A95453 /* TwitterFeedMapper.m */; };
@@ -19,13 +18,13 @@
 		060E0C691A76E20C00A95453 /* HVMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C681A76E20C00A95453 /* HVMappingTests.m */; };
 		060E0C6C1A76E30900A95453 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 060E0C6B1A76E30900A95453 /* MOCK_DATA.json */; };
 		060E0C6F1A76E71200A95453 /* HVMappingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C6E1A76E71200A95453 /* HVMappingResult.m */; };
+		061E176C1A78188700F33AC5 /* DumpMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E176B1A78188700F33AC5 /* DumpMapper.m */; };
 		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
 		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
 		066DD7D61A75298D003862CF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D51A75298D003862CF /* TweetCell.m */; };
 		066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D81A75299B003862CF /* MoreToSeeCell.m */; };
 		066DD7DC1A7529BF003862CF /* UserSurveyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7DB1A7529BF003862CF /* UserSurveyCell.m */; };
 		066DD7DF1A7529DA003862CF /* PaginationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7DE1A7529DA003862CF /* PaginationCell.m */; };
-		066DD7E41A752E2D003862CF /* TweetTableDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7E31A752E2D003862CF /* TweetTableDataProvider.m */; };
 		06FE37831A6E9567006153C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37821A6E9567006153C2 /* main.m */; };
 		06FE37861A6E9567006153C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37851A6E9567006153C2 /* AppDelegate.m */; };
 		06FE37891A6E9567006153C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37881A6E9567006153C2 /* ViewController.m */; };
@@ -41,9 +40,6 @@
 		06FE37B71A6EB87A006153C2 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B41A6EB87A006153C2 /* check@2x.png */; };
 		06FE37B81A6EB87A006153C2 /* check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FE37B51A6EB87A006153C2 /* check@3x.png */; };
 		06FE37BC1A74F0CD006153C2 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37BB1A74F0CD006153C2 /* DataManager.m */; };
-		06FE37BF1A74F127006153C2 /* DataRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37BE1A74F127006153C2 /* DataRouter.m */; };
-		06FE37C21A74F2F2006153C2 /* TwitterDataProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37C11A74F2F2006153C2 /* TwitterDataProtocol.m */; };
-		06FE37C51A74F354006153C2 /* StreamDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37C41A74F354006153C2 /* StreamDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		060E0C471A76CEE400A95453 /* TwitterFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFeedParser.h; sourceTree = "<group>"; };
-		060E0C481A76CEE400A95453 /* TwitterFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFeedParser.m; sourceTree = "<group>"; };
 		060E0C4E1A76D06A00A95453 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tweet.h; path = "Object model/Tweet.h"; sourceTree = "<group>"; };
 		060E0C4F1A76D06A00A95453 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tweet.m; path = "Object model/Tweet.m"; sourceTree = "<group>"; };
 		060E0C511A76D07B00A95453 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "Object model/User.h"; sourceTree = "<group>"; };
@@ -79,7 +73,8 @@
 		060E0C6B1A76E30900A95453 /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
 		060E0C6D1A76E71200A95453 /* HVMappingResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVMappingResult.h; sourceTree = "<group>"; };
 		060E0C6E1A76E71200A95453 /* HVMappingResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVMappingResult.m; sourceTree = "<group>"; };
-		06584FAB1A752FE8001974AB /* HiveDataProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiveDataProviderProtocol.h; sourceTree = "<group>"; };
+		061E176A1A78188700F33AC5 /* DumpMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DumpMapper.h; path = "Dump mapper/DumpMapper.h"; sourceTree = "<group>"; };
+		061E176B1A78188700F33AC5 /* DumpMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DumpMapper.m; path = "Dump mapper/DumpMapper.m"; sourceTree = "<group>"; };
 		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		066DD7D11A752974003862CF /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTableViewController.h; sourceTree = "<group>"; };
@@ -92,8 +87,6 @@
 		066DD7DB1A7529BF003862CF /* UserSurveyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSurveyCell.m; sourceTree = "<group>"; };
 		066DD7DD1A7529DA003862CF /* PaginationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationCell.h; sourceTree = "<group>"; };
 		066DD7DE1A7529DA003862CF /* PaginationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaginationCell.m; sourceTree = "<group>"; };
-		066DD7E21A752E2D003862CF /* TweetTableDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTableDataProvider.h; sourceTree = "<group>"; };
-		066DD7E31A752E2D003862CF /* TweetTableDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableDataProvider.m; sourceTree = "<group>"; };
 		06FE377D1A6E9567006153C2 /* Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FE37811A6E9567006153C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06FE37821A6E9567006153C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -118,12 +111,6 @@
 		06FE37B51A6EB87A006153C2 /* check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@3x.png"; sourceTree = "<group>"; };
 		06FE37BA1A74F0CD006153C2 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = "Data providers/DataManager.h"; sourceTree = "<group>"; };
 		06FE37BB1A74F0CD006153C2 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = "Data providers/DataManager.m"; sourceTree = "<group>"; };
-		06FE37BD1A74F127006153C2 /* DataRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataRouter.h; sourceTree = "<group>"; };
-		06FE37BE1A74F127006153C2 /* DataRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataRouter.m; sourceTree = "<group>"; };
-		06FE37C01A74F2F2006153C2 /* TwitterDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterDataProtocol.h; sourceTree = "<group>"; };
-		06FE37C11A74F2F2006153C2 /* TwitterDataProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterDataProtocol.m; sourceTree = "<group>"; };
-		06FE37C31A74F353006153C2 /* StreamDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDataManager.h; sourceTree = "<group>"; };
-		06FE37C41A74F354006153C2 /* StreamDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,10 +136,9 @@
 		060E0C461A76CECD00A95453 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
+				061E17691A78186B00F33AC5 /* Dumb mapper */,
 				060E0C541A76D29700A95453 /* Mapper */,
 				060E0C4D1A76D05000A95453 /* Object model */,
-				060E0C471A76CEE400A95453 /* TwitterFeedParser.h */,
-				060E0C481A76CEE400A95453 /* TwitterFeedParser.m */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -205,6 +191,15 @@
 			name = "Mock data";
 			sourceTree = "<group>";
 		};
+		061E17691A78186B00F33AC5 /* Dumb mapper */ = {
+			isa = PBXGroup;
+			children = (
+				061E176A1A78188700F33AC5 /* DumpMapper.h */,
+				061E176B1A78188700F33AC5 /* DumpMapper.m */,
+			);
+			name = "Dumb mapper";
+			sourceTree = "<group>";
+		};
 		06584FAC1A76BCAA001974AB /* View controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,16 +244,6 @@
 			name = "Tweet deck";
 			sourceTree = "<group>";
 		};
-		066DD7E01A752C2E003862CF /* Data providers */ = {
-			isa = PBXGroup;
-			children = (
-				066DD7E21A752E2D003862CF /* TweetTableDataProvider.h */,
-				066DD7E31A752E2D003862CF /* TweetTableDataProvider.m */,
-				06584FAB1A752FE8001974AB /* HiveDataProviderProtocol.h */,
-			);
-			name = "Data providers";
-			sourceTree = "<group>";
-		};
 		06FE37741A6E9567006153C2 = {
 			isa = PBXGroup;
 			children = (
@@ -284,7 +269,6 @@
 			children = (
 				060E0C461A76CECD00A95453 /* Parser */,
 				06584FAC1A76BCAA001974AB /* View controllers */,
-				066DD7E01A752C2E003862CF /* Data providers */,
 				06FE37B91A74F084006153C2 /* Data managers */,
 				06FE37841A6E9567006153C2 /* AppDelegate.h */,
 				06FE37851A6E9567006153C2 /* AppDelegate.m */,
@@ -361,12 +345,6 @@
 			children = (
 				06FE37BA1A74F0CD006153C2 /* DataManager.h */,
 				06FE37BB1A74F0CD006153C2 /* DataManager.m */,
-				06FE37BD1A74F127006153C2 /* DataRouter.h */,
-				06FE37BE1A74F127006153C2 /* DataRouter.m */,
-				06FE37C01A74F2F2006153C2 /* TwitterDataProtocol.h */,
-				06FE37C11A74F2F2006153C2 /* TwitterDataProtocol.m */,
-				06FE37C31A74F353006153C2 /* StreamDataManager.h */,
-				06FE37C41A74F354006153C2 /* StreamDataManager.m */,
 			);
 			name = "Data managers";
 			sourceTree = "<group>";
@@ -487,20 +465,16 @@
 				060E0C571A76D2A800A95453 /* TwitterFeedMapper.m in Sources */,
 				06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */,
 				060E0C671A76D99300A95453 /* HVRelationshipMapping.m in Sources */,
-				06FE37BF1A74F127006153C2 /* DataRouter.m in Sources */,
 				06FE37831A6E9567006153C2 /* main.m in Sources */,
 				060E0C501A76D06A00A95453 /* Tweet.m in Sources */,
-				060E0C491A76CEE400A95453 /* TwitterFeedParser.m in Sources */,
 				066DD7DC1A7529BF003862CF /* UserSurveyCell.m in Sources */,
 				066DD7DF1A7529DA003862CF /* PaginationCell.m in Sources */,
-				066DD7E41A752E2D003862CF /* TweetTableDataProvider.m in Sources */,
-				06FE37C51A74F354006153C2 /* StreamDataManager.m in Sources */,
 				060E0C531A76D07B00A95453 /* User.m in Sources */,
 				060E0C5D1A76D6B500A95453 /* HVMappingRoute.m in Sources */,
 				060E0C601A76D73800A95453 /* HVMappingOperation.m in Sources */,
 				06FE37B01A6EB230006153C2 /* AccountCell.m in Sources */,
 				06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */,
-				06FE37C21A74F2F2006153C2 /* TwitterDataProtocol.m in Sources */,
+				061E176C1A78188700F33AC5 /* DumpMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,6 @@
 #import "HVRelationshipMapping.h"
 
 @interface HVObjectMapping ()
-@property (nonatomic, assign) Class targetClass;
 @property (nonatomic, strong) NSDictionary *mappingAttributes;
 @property (nonatomic, strong) NSDictionary *relationshipDictionary; // relationship key ->> object mapping
 @end
@@ -20,7 +19,7 @@
 - (id) initWithTargetClass:(Class)aClass {
     self = [super init];
     if (self) {
-        self.targetClass = aClass;
+        _targetClass = aClass;
     }
     return self;
 }

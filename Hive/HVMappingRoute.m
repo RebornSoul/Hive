@@ -10,9 +10,7 @@
 
 @interface HVMappingRoute ()
 
-@property (nonatomic, assign) Class targetClass;
-@property (nonatomic, strong) NSString *rootPath;
-@property (nonatomic, strong) NSArray *mappingStack;
+
 @end
 
 @implementation HVMappingRoute
@@ -20,9 +18,9 @@
 - (id) initWithTargetClass:(Class)aClass rootPath:(NSString *)rootPath {
     self = [super init];
     if (self) {
-        self.targetClass = aClass;
-        self.rootPath = rootPath;
-        self.mappingStack = [NSArray new];
+        _targetClass = aClass;
+        _rootPath = rootPath;
+        _mappingStack = [NSArray new];
     }
     return self;
 }
@@ -34,7 +32,7 @@
 - (void) addObjectMapping:(HVObjectMapping *)objectMapping {
     NSMutableArray *mutableCopy = [self.mappingStack mutableCopy];
     [mutableCopy addObject:objectMapping];
-    self.mappingStack = [NSArray arrayWithArray:mutableCopy];
+    _mappingStack = [NSArray arrayWithArray:mutableCopy];
 }
 
 @end
