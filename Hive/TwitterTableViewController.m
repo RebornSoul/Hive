@@ -142,10 +142,11 @@ typedef void (^HVErrorBlock)(NSError *error);
                 TweetCell *tweetCell = (TweetCell *)cell;
                 tweetCell.tweetTextView.attributedText = [weakSelf tweetStringFromNode:node];
                 tweetCell.usernameLabel.attributedText = [weakSelf userNameStringFromNode:node];
+                NSString *imagePath = node.tweet.user.profileImageUrl;
                 [[HVImageBank sharedInstance]
-                                      loadImageWithURL:[NSURL URLWithString:node.tweet.user.profileImageUrl]
-                                      completion:^(UIImage *image, NSError *error) {
-                                          tweetCell.userpicImageView.image = image;
+                 loadImageWithURL:[NSURL URLWithString:[imagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
+                 completion:^(UIImage *image, NSError *error) {
+                     tweetCell.userpicImageView.image = image;
                 }];
             }
                 break;

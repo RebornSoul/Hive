@@ -54,6 +54,7 @@
     user.idStr = node[@"id_str"];
     user.screenName = node[@"screen_name"];
     user.location = node[@"location"];
+    user.profileImageUrl = node[@"profile_image_url"];
     return user;
 }
 

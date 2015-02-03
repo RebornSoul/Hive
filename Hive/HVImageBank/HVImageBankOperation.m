@@ -45,7 +45,7 @@ static NSString * const HVImageBankErrorDomain = @"com.HVImageBank.Error";
                     
                     if(_imageCompletionBlock) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            _imageCompletionBlock(image, nil);
+                            _imageCompletionBlock(image, error);
                         });
                     }
                 });
@@ -63,7 +63,7 @@ static NSString * const HVImageBankErrorDomain = @"com.HVImageBank.Error";
                         });
                     }
                 }
-                }
+            }
         }
     }];
     [task resume];
