@@ -19,6 +19,8 @@
 		060E0C6C1A76E30900A95453 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 060E0C6B1A76E30900A95453 /* MOCK_DATA.json */; };
 		060E0C6F1A76E71200A95453 /* HVMappingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E0C6E1A76E71200A95453 /* HVMappingResult.m */; };
 		061E176C1A78188700F33AC5 /* DumpMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E176B1A78188700F33AC5 /* DumpMapper.m */; };
+		061E17721A81070500F33AC5 /* HVImageBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E17711A81070500F33AC5 /* HVImageBank.m */; };
+		061E17761A8108C200F33AC5 /* HVImageBankOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E17751A8108C200F33AC5 /* HVImageBankOperation.m */; };
 		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
 		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
 		066DD7D61A75298D003862CF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D51A75298D003862CF /* TweetCell.m */; };
@@ -75,6 +77,10 @@
 		060E0C6E1A76E71200A95453 /* HVMappingResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVMappingResult.m; sourceTree = "<group>"; };
 		061E176A1A78188700F33AC5 /* DumpMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DumpMapper.h; path = "Dump mapper/DumpMapper.h"; sourceTree = "<group>"; };
 		061E176B1A78188700F33AC5 /* DumpMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DumpMapper.m; path = "Dump mapper/DumpMapper.m"; sourceTree = "<group>"; };
+		061E17701A81070500F33AC5 /* HVImageBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVImageBank.h; path = HVImageBank/HVImageBank.h; sourceTree = "<group>"; };
+		061E17711A81070500F33AC5 /* HVImageBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HVImageBank.m; path = HVImageBank/HVImageBank.m; sourceTree = "<group>"; };
+		061E17741A8108C200F33AC5 /* HVImageBankOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVImageBankOperation.h; path = HVImageBank/HVImageBankOperation.h; sourceTree = "<group>"; };
+		061E17751A8108C200F33AC5 /* HVImageBankOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HVImageBankOperation.m; path = HVImageBank/HVImageBankOperation.m; sourceTree = "<group>"; };
 		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		066DD7D11A752974003862CF /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTableViewController.h; sourceTree = "<group>"; };
@@ -198,6 +204,17 @@
 				061E176B1A78188700F33AC5 /* DumpMapper.m */,
 			);
 			name = "Dumb mapper";
+			sourceTree = "<group>";
+		};
+		061E17731A81083D00F33AC5 /* HVImageBank */ = {
+			isa = PBXGroup;
+			children = (
+				061E17701A81070500F33AC5 /* HVImageBank.h */,
+				061E17711A81070500F33AC5 /* HVImageBank.m */,
+				061E17741A8108C200F33AC5 /* HVImageBankOperation.h */,
+				061E17751A8108C200F33AC5 /* HVImageBankOperation.m */,
+			);
+			name = HVImageBank;
 			sourceTree = "<group>";
 		};
 		06584FAC1A76BCAA001974AB /* View controllers */ = {
@@ -343,6 +360,7 @@
 		06FE37B91A74F084006153C2 /* Data managers */ = {
 			isa = PBXGroup;
 			children = (
+				061E17731A81083D00F33AC5 /* HVImageBank */,
 				06FE37BA1A74F0CD006153C2 /* DataManager.h */,
 				06FE37BB1A74F0CD006153C2 /* DataManager.m */,
 			);
@@ -453,6 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				061E17721A81070500F33AC5 /* HVImageBank.m in Sources */,
 				06FE37891A6E9567006153C2 /* ViewController.m in Sources */,
 				066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */,
 				066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */,
@@ -475,6 +494,7 @@
 				06FE37B01A6EB230006153C2 /* AccountCell.m in Sources */,
 				06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */,
 				061E176C1A78188700F33AC5 /* DumpMapper.m in Sources */,
+				061E17761A8108C200F33AC5 /* HVImageBankOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

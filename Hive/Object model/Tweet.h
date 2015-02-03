@@ -18,5 +18,6 @@
 @property (nonatomic, assign) NSInteger retweetCount;
 @property (nonatomic, assign) NSInteger favoriteCount;
 @property (nonatomic, strong) NSString *lang;
+@property (nonatomic, strong) NSString *imageUrl;
 @property (nonatomic, strong) User *user;
 @end

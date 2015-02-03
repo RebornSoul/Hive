@@ -12,6 +12,10 @@
 #import "Tweet.h"
 #import "User.h"
 #import "TweetCell.h"
+#import "HVImageBank.h"
+
+#define USE_SIZE_CACHE 1
+#define USE_ATTRIBUTED_TEXT_CACHE 1
 
 typedef NS_ENUM(NSUInteger, kTweetTableCellType) {
     kTweetTableCellTypeNormal = 1,
@@ -46,14 +50,31 @@ typedef void (^HVErrorBlock)(NSError *error);
 @property (nonatomic, copy) HVNewDataBlock newDataReceivedBlock;
 @property (nonatomic, copy) HVErrorBlock errorBlock;
 
+#if USE_SIZE_CACHE
+@property (nonatomic, strong) NSMutableDictionary *sizeCache;
+#endif
+
+#if USE_ATTRIBUTED_TEXT_CACHE
+@property (nonatomic, strong) NSMutableDictionary *usernameCache;
+@property (nonatomic, strong) NSMutableDictionary *tweetTextCache;
+#endif
+
 @end
 
 @implementation TwitterTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Do any additional setup after loading the view.
+    
+#if USE_SIZE_CACHE
+    self.sizeCache = [NSMutableDictionary new];
+#endif
+    
+#if USE_ATTRIBUTED_TEXT_CACHE
+    self.usernameCache = [NSMutableDictionary new];
+    self.tweetTextCache = [NSMutableDictionary new];
+#endif
+    
 }
 
 - (void) loadData {
@@ -81,15 +102,51 @@ typedef void (^HVErrorBlock)(NSError *error);
     }];
 }
 
+- (NSAttributedString *)userNameStringFromNode:(HVDataNode *)node {
+#if USE_ATTRIBUTED_TEXT_CACHE
+    NSAttributedString *cachedName = self.usernameCache[node.tweet.user.idStr];
+    if (cachedName) {
+        return cachedName;
+    }
+#endif
+    NSAttributedString *calculatedString = [TweetCell usernameStringFromUser:node.tweet.user];
+#if USE_ATTRIBUTED_TEXT_CACHE
+    self.usernameCache[node.tweet.user.idStr] = calculatedString;
+#endif
+    return calculatedString;
+}
+
+- (NSAttributedString *)tweetStringFromNode:(HVDataNode *)node {
+#if USE_ATTRIBUTED_TEXT_CACHE
+    NSAttributedString *cachedTweet = self.tweetTextCache[node.tweet.idStr];
+    if (cachedTweet) {
+        return cachedTweet;
+    }
+#endif
+    NSAttributedString *calculatedString = [TweetCell tweetTextFromTweet:node.tweet];
+#if USE_ATTRIBUTED_TEXT_CACHE
+    self.tweetTextCache[node.tweet.idStr] = calculatedString;
+#endif
+    return calculatedString;
+}
+
 - (void) setupDataProvider {
     self.dataArray = [NSArray new];
+    
+    __weak __typeof(self) weakSelf = self;
+    
     self.configureCellBlock = ^(UITableViewCell *cell, HVDataNode *node, NSIndexPath *indexPath) {
         switch (node.nodeType) {
             case kTweetTableCellTypeNormal:
             {
                 TweetCell *tweetCell = (TweetCell *)cell;
-                [tweetCell.tweetTextView setText:node.tweet.text];
-                [tweetCell.usernameLabel setText:[NSString stringWithFormat:@"%@ %@", node.tweet.user.name, node.tweet.user.screenName]];
+                tweetCell.tweetTextView.attributedText = [weakSelf tweetStringFromNode:node];
+                tweetCell.usernameLabel.attributedText = [weakSelf userNameStringFromNode:node];
+                [[HVImageBank sharedInstance]
+                                      loadImageWithURL:[NSURL URLWithString:node.tweet.user.profileImageUrl]
+                                      completion:^(UIImage *image, NSError *error) {
+                                          tweetCell.userpicImageView.image = image;
+                }];
             }
                 break;
             
@@ -97,7 +154,6 @@ typedef void (^HVErrorBlock)(NSError *error);
                 break;
         }
     };
-    __weak __typeof(self) weakSelf = self;
     
     self.newDataReceivedBlock = ^(NSData *responseData) {
         
@@ -154,7 +210,23 @@ typedef void (^HVErrorBlock)(NSError *error);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120.0f;
+    HVDataNode *node = self.dataArray[indexPath.row];
+
+#if USE_SIZE_CACHE
+    NSNumber *cachedHeight = self.sizeCache[node.tweet.idStr];
+    
+    if (cachedHeight != nil) {
+        return [cachedHeight floatValue];
+    }
+#endif
+    
+    CGFloat calculatedHeight = [TweetCell heightForTweet:node.tweet constrainedToWidth:CGRectGetWidth(tableView.bounds)];
+    
+#if USE_SIZE_CACHE
+    self.sizeCache[node.tweet.idStr] = @(calculatedHeight);
+#endif
+    
+    return calculatedHeight;
 }
 
 #pragma mark - custom methods

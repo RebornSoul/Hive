@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Tweet, User;
+
 @interface TweetCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *userpicImageView;
@@ -20,4 +22,8 @@
 @property (nonatomic, weak) IBOutlet UIButton *favButton;
 @property (nonatomic, weak) IBOutlet UIButton *repostButton;
 
++ (CGFloat) heightForTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width;
+
++ (NSAttributedString *) usernameStringFromUser:(User *)user;
++ (NSAttributedString *) tweetTextFromTweet:(Tweet *)tweet;
 @end
