@@ -290,7 +290,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="MUN-QE-rqe"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <state key="normal" title="⏎">
+                                                    <state key="normal" image="reply.png">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -302,7 +302,7 @@
                                                         <constraint firstAttribute="width" constant="57" id="i4Q-0W-YnR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <state key="normal" title="★ 42">
+                                                    <state key="normal" title="12" image="star_off.png">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -314,7 +314,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="G6N-gK-oVZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <state key="normal" title="↶ 42">
+                                                    <state key="normal" title=" 42" image="retweet_off.png">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -467,7 +467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVo-ON-SmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1082" y="1094"/>
+            <point key="canvasLocation" x="1081.5" y="1092.5"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="wlv-wk-Yax">
@@ -506,5 +506,8 @@
     </scenes>
     <resources>
         <image name="check.png" width="30" height="30"/>
+        <image name="reply.png" width="20" height="12"/>
+        <image name="retweet_off.png" width="20" height="12"/>
+        <image name="star_off.png" width="12" height="12"/>
     </resources>
 </document>

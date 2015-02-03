@@ -49,6 +49,7 @@ typedef void (^HVErrorBlock)(NSError *error);
 @property (nonatomic, copy) HVConfigureCellBlock configureCellBlock;
 @property (nonatomic, copy) HVNewDataBlock newDataReceivedBlock;
 @property (nonatomic, copy) HVErrorBlock errorBlock;
+@property (nonatomic, assign) BOOL isLoading;
 
 #if USE_SIZE_CACHE
 @property (nonatomic, strong) NSMutableDictionary *sizeCache;
@@ -95,7 +96,7 @@ typedef void (^HVErrorBlock)(NSError *error);
 
 // In this method we construct data request and wait for response
 - (void)fetchRemoteData {
-    [DataManager retrieveAccountFeed:self.currentAccount withCompletion:^(NSData *responseData) {
+    [DataManager retrieveAccountFeed:self.currentAccount withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
         self.newDataReceivedBlock (responseData);
     } failure:^(NSError *error) {
         self.errorBlock (error);
@@ -142,6 +143,12 @@ typedef void (^HVErrorBlock)(NSError *error);
                 TweetCell *tweetCell = (TweetCell *)cell;
                 tweetCell.tweetTextView.attributedText = [weakSelf tweetStringFromNode:node];
                 tweetCell.usernameLabel.attributedText = [weakSelf userNameStringFromNode:node];
+                
+                [tweetCell.repostButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.retweetCount]
+                                        forState:UIControlStateNormal];
+                [tweetCell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount]
+                                        forState:UIControlStateNormal];
+                
                 NSString *imagePath = node.tweet.user.profileImageUrl;
                 [[HVImageBank sharedInstance]
                  loadImageWithURL:[NSURL URLWithString:[imagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
@@ -159,8 +166,7 @@ typedef void (^HVErrorBlock)(NSError *error);
     self.newDataReceivedBlock = ^(NSData *responseData) {
         
         [DumpMapper performFeedMappingWithData:responseData withCompletion:^(NSArray *result) {
-            weakSelf.dataArray = [weakSelf nodeArrayFromParsedData:result];
-            [weakSelf.tableView reloadData];
+            [weakSelf addAndRefreshDataWithNodeArray:[weakSelf nodeArrayFromParsedData:result]];
         } failure:^(NSError *error) {
             weakSelf.errorBlock (error);
         }];
@@ -172,6 +178,34 @@ typedef void (^HVErrorBlock)(NSError *error);
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil, nil] show];
     };
+}
+
+- (void) addAndRefreshDataWithNodeArray:(NSArray *)nodeArray {
+    if (self.isLoading) { // Waiting for a page
+        
+        NSInteger addedCount = [nodeArray count];
+        NSInteger oldCount = [self.dataArray count];
+        
+        NSMutableArray *indexPaths = [NSMutableArray new];
+        for (NSInteger i = oldCount; i < oldCount + addedCount; i++) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        
+        NSMutableArray *mutableData = [self.dataArray mutableCopy];
+        [mutableData addObjectsFromArray:nodeArray];
+        self.dataArray = [NSArray arrayWithArray:mutableData];
+        
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
+        self.isLoading = NO;
+        
+    } else { // First data is loading
+        
+        self.dataArray = nodeArray;
+        [self.tableView reloadData];
+        
+    }
 }
 
 - (NSArray *) nodeArrayFromParsedData:(NSArray *)parsedData {
@@ -228,6 +262,37 @@ typedef void (^HVErrorBlock)(NSError *error);
 #endif
     
     return calculatedHeight;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat yOffset = tableView.contentOffset.y;
+    CGFloat height = tableView.contentSize.height - tableView.bounds.size.height;
+    CGFloat scrolledPercentage = yOffset / height;
+    
+    if (scrolledPercentage > .6f && !self.isLoading) {
+        HVDataNode *lastNode = [self.dataArray lastObject];
+        [self loadTweetsMaxId:lastNode.tweet.idStr];
+    }
+}
+
+- (void) loadTweetsMaxId:(NSString *)maxId {
+    self.isLoading = YES;
+    [DataManager retrieveAccountFeed:self.currentAccount maxId:maxId withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
+        self.newDataReceivedBlock (responseData);
+    } failure:^(NSError *error) {
+        self.errorBlock (error);
+    }];
+
+}
+
+- (void) loadTweetsSinceId:(NSString *)sinceId {
+    self.isLoading = YES;
+    [DataManager retrieveAccountFeed:self.currentAccount sinceId:sinceId withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
+        self.newDataReceivedBlock (responseData);
+    } failure:^(NSError *error) {
+        self.errorBlock (error);
+    }];
 }
 
 #pragma mark - custom methods

@@ -43,6 +43,10 @@
     tw.createdAt = [tweetDF dateFromString:node[@"created_at"]];
     tw.text = node[@"text"];
     tw.idStr = node[@"id_str"];
+    tw.retweetCount = [node[@"retweet_count"] integerValue];
+    tw.favoriteCount = [node[@"favorite_count"] integerValue];
+    tw.favorited = [node[@"favorited"] boolValue];
+    tw.retweeted = [node[@"retweeted"] boolValue];
     User *user = [DumpMapper mapUserNode:node[@"user"]];
     tw.user = user;
     return tw;
