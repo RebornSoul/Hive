@@ -108,4 +108,17 @@ const CGFloat HVTweetCellControlPanelHeight = 30.0f;
                                            attributes:@{NSFontAttributeName:[[self class] tweetFont]}];
 }
 
+#pragma mark - animation choreographics
+
++ (CATransform3D) initialTransform {
+    CGFloat rotationAngleDegrees = 15;
+    CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
+    CGPoint offsetPositioning = CGPointMake(-30, 50);
+    CATransform3D transform = CATransform3DIdentity;
+
+    transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
+    transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
+    return transform;
+}
+
 @end

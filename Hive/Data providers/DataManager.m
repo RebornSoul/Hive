@@ -81,10 +81,14 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
              NSError *statusError = [NSError errorWithDomain:HVDataManagerErrorDomain
                                                         code:urlResponse.statusCode
                                                     userInfo:@{NSLocalizedDescriptionKey:errorText}];
-             if (failureBlock) failureBlock (statusError);
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 if (failureBlock) failureBlock (statusError);
+             });
          } else {
              if (error) {
-                 if (failureBlock) failureBlock (error);
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     if (failureBlock) failureBlock (error);
+                 });
              } else {
                  if (completionBlock) completionBlock (responseData, urlResponse);
              }

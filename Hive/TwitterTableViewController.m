@@ -13,9 +13,13 @@
 #import "User.h"
 #import "TweetCell.h"
 #import "HVImageBank.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define USE_SIZE_CACHE 1
 #define USE_ATTRIBUTED_TEXT_CACHE 1
+#define USE_CELL_ANIMATION 1
+
+#define LOADER_CELL_HEIGHT 44.0f
 
 typedef NS_ENUM(NSUInteger, kTweetTableCellType) {
     kTweetTableCellTypeNormal = 1,
@@ -60,6 +64,10 @@ typedef void (^HVErrorBlock)(NSError *error);
 @property (nonatomic, strong) NSMutableDictionary *tweetTextCache;
 #endif
 
+#if USE_CELL_ANIMATION
+@property (nonatomic, strong) NSMutableSet *popupAnimationSet;
+#endif
+
 @end
 
 @implementation TwitterTableViewController
@@ -74,6 +82,10 @@ typedef void (^HVErrorBlock)(NSError *error);
 #if USE_ATTRIBUTED_TEXT_CACHE
     self.usernameCache = [NSMutableDictionary new];
     self.tweetTextCache = [NSMutableDictionary new];
+#endif
+    
+#if USE_CELL_ANIMATION
+    self.popupAnimationSet = [NSMutableSet new];
 #endif
     
 }
@@ -184,15 +196,18 @@ typedef void (^HVErrorBlock)(NSError *error);
     if (self.isLoading) { // Waiting for a page
         
         NSInteger addedCount = [nodeArray count];
-        NSInteger oldCount = [self.dataArray count];
+        NSInteger insertIndex = [self.dataArray indexOfObject:[self lastTweetNodeFromArray:self.dataArray]];
         
         NSMutableArray *indexPaths = [NSMutableArray new];
-        for (NSInteger i = oldCount; i < oldCount + addedCount; i++) {
+        for (NSInteger i = insertIndex; i < insertIndex + addedCount; i++) {
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
         
         NSMutableArray *mutableData = [self.dataArray mutableCopy];
-        [mutableData addObjectsFromArray:nodeArray];
+        
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(insertIndex, addedCount)];
+        [mutableData insertObjects:nodeArray atIndexes:indexSet];
+        
         self.dataArray = [NSArray arrayWithArray:mutableData];
         
         [self.tableView beginUpdates];
@@ -202,7 +217,14 @@ typedef void (^HVErrorBlock)(NSError *error);
         
     } else { // First data is loading
         
-        self.dataArray = nodeArray;
+        HVDataNode *loaderNode = [[HVDataNode alloc] init];
+        loaderNode.nodeType = kTweetTableCellTypeLoader;
+        
+        NSMutableArray *temp = [NSMutableArray new];
+        [temp addObjectsFromArray:nodeArray];
+        [temp addObject:loaderNode];
+        
+        self.dataArray = [NSArray arrayWithArray:temp];
         [self.tableView reloadData];
         
     }
@@ -248,17 +270,33 @@ typedef void (^HVErrorBlock)(NSError *error);
     HVDataNode *node = self.dataArray[indexPath.row];
 
 #if USE_SIZE_CACHE
-    NSNumber *cachedHeight = self.sizeCache[node.tweet.idStr];
-    
-    if (cachedHeight != nil) {
-        return [cachedHeight floatValue];
+    if (node.nodeType == kTweetTableCellTypeNormal) {
+        NSNumber *cachedHeight = self.sizeCache[node.tweet.idStr];
+        
+        if (cachedHeight != nil) {
+            return [cachedHeight floatValue];
+        }
     }
 #endif
     
-    CGFloat calculatedHeight = [TweetCell heightForTweet:node.tweet constrainedToWidth:CGRectGetWidth(tableView.bounds)];
+    CGFloat calculatedHeight = 0.0f;
+    
+    switch (node.nodeType) {
+        case kTweetTableCellTypeNormal:
+            calculatedHeight = [TweetCell heightForTweet:node.tweet constrainedToWidth:CGRectGetWidth(tableView.bounds)];
+            break;
+        case kTweetTableCellTypeLoader:
+            calculatedHeight = LOADER_CELL_HEIGHT;
+            break;
+        default:
+            break;
+    }
+    
     
 #if USE_SIZE_CACHE
-    self.sizeCache[node.tweet.idStr] = @(calculatedHeight);
+    if (node.nodeType == kTweetTableCellTypeNormal) {
+        self.sizeCache[node.tweet.idStr] = @(calculatedHeight);
+    }
 #endif
     
     return calculatedHeight;
@@ -266,14 +304,37 @@ typedef void (^HVErrorBlock)(NSError *error);
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat yOffset = tableView.contentOffset.y;
-    CGFloat height = tableView.contentSize.height - tableView.bounds.size.height;
-    CGFloat scrolledPercentage = yOffset / height;
+    HVDataNode *node = self.dataArray[indexPath.row];
     
-    if (scrolledPercentage > .6f && !self.isLoading) {
-        HVDataNode *lastNode = [self.dataArray lastObject];
+#if USE_CELL_ANIMATION
+    if (node.nodeType == kTweetTableCellTypeNormal) {
+        if (![self.popupAnimationSet containsObject:node.tweet.idStr]) {
+            cell.layer.transform = [TweetCell initialTransform];
+            cell.layer.opacity = .1f;
+            [UIView animateWithDuration:0.4 animations:^{
+                cell.layer.transform = CATransform3DIdentity;
+                cell.layer.opacity = 1;
+            }];
+            [self.popupAnimationSet addObject:node.tweet.idStr];
+        }
+    }
+#endif
+    
+    if (node.nodeType == kTweetTableCellTypeLoader && !self.isLoading) {
+        HVDataNode *lastNode = [self lastTweetNodeFromArray:self.dataArray];
         [self loadTweetsMaxId:lastNode.tweet.idStr];
     }
+}
+
+- (HVDataNode *) lastTweetNodeFromArray:(NSArray *) array {
+    if (array.count) {
+        for (NSUInteger i = array.count-1; i > 0; i --) {
+            HVDataNode *node = self.dataArray[i];
+            if (node.nodeType == kTweetTableCellTypeNormal) return node;
+        }
+
+    }
+    return nil;
 }
 
 - (void) loadTweetsMaxId:(NSString *)maxId {

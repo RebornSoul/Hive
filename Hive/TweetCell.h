@@ -26,4 +26,6 @@
 
 + (NSAttributedString *) usernameStringFromUser:(User *)user;
 + (NSAttributedString *) tweetTextFromTweet:(Tweet *)tweet;
+
++ (CATransform3D) initialTransform;
 @end
