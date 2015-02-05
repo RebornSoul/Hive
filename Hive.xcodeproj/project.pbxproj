@@ -36,6 +36,8 @@
 		061E17931A814EEE00F33AC5 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17841A814EEE00F33AC5 /* star_on.png */; };
 		061E17941A814EEE00F33AC5 /* star_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17851A814EEE00F33AC5 /* star_on@2x.png */; };
 		061E17951A814EEE00F33AC5 /* star_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17861A814EEE00F33AC5 /* star_on@3x.png */; };
+		061E17981A840A1400F33AC5 /* AvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E17971A840A1400F33AC5 /* AvatarView.m */; };
+		061E179A1A841BFC00F33AC5 /* viewbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17991A841BFC00F33AC5 /* viewbg@2x.png */; };
 		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
 		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
 		066DD7D61A75298D003862CF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D51A75298D003862CF /* TweetCell.m */; };
@@ -111,6 +113,9 @@
 		061E17841A814EEE00F33AC5 /* star_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_on.png; sourceTree = "<group>"; };
 		061E17851A814EEE00F33AC5 /* star_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_on@2x.png"; sourceTree = "<group>"; };
 		061E17861A814EEE00F33AC5 /* star_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_on@3x.png"; sourceTree = "<group>"; };
+		061E17961A840A1400F33AC5 /* AvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarView.h; sourceTree = "<group>"; };
+		061E17971A840A1400F33AC5 /* AvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarView.m; sourceTree = "<group>"; };
+		061E17991A841BFC00F33AC5 /* viewbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "viewbg@2x.png"; sourceTree = "<group>"; };
 		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		066DD7D11A752974003862CF /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTableViewController.h; sourceTree = "<group>"; };
@@ -250,6 +255,7 @@
 		061E17771A814EEE00F33AC5 /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				061E17991A841BFC00F33AC5 /* viewbg@2x.png */,
 				061E17781A814EEE00F33AC5 /* reply.png */,
 				061E17791A814EEE00F33AC5 /* reply@2x.png */,
 				061E177A1A814EEE00F33AC5 /* reply@3x.png */,
@@ -302,6 +308,8 @@
 				066DD7DB1A7529BF003862CF /* UserSurveyCell.m */,
 				066DD7DD1A7529DA003862CF /* PaginationCell.h */,
 				066DD7DE1A7529DA003862CF /* PaginationCell.m */,
+				061E17961A840A1400F33AC5 /* AvatarView.h */,
+				061E17971A840A1400F33AC5 /* AvatarView.m */,
 			);
 			name = "Tweet table";
 			sourceTree = "<group>";
@@ -518,6 +526,7 @@
 				061E17871A814EEE00F33AC5 /* reply.png in Resources */,
 				06FE378E1A6E9567006153C2 /* Images.xcassets in Resources */,
 				061E17921A814EEE00F33AC5 /* star_off@3x.png in Resources */,
+				061E179A1A841BFC00F33AC5 /* viewbg@2x.png in Resources */,
 				061E17891A814EEE00F33AC5 /* reply@3x.png in Resources */,
 				061E17931A814EEE00F33AC5 /* star_on.png in Resources */,
 				061E178B1A814EEE00F33AC5 /* retweet_off@2x.png in Resources */,
@@ -563,6 +572,7 @@
 				06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */,
 				061E176C1A78188700F33AC5 /* DumpMapper.m in Sources */,
 				061E17761A8108C200F33AC5 /* HVImageBankOperation.m in Sources */,
+				061E17981A840A1400F33AC5 /* AvatarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -70,8 +70,15 @@ const CGFloat HVTweetCellControlPanelHeight = 30.0f;
 }
 
 - (void)awakeFromNib {
+    
+    [super awakeFromNib];
+    
     self.tweetTextView.textContainerInset = UIEdgeInsetsZero;
     self.tweetTextView.textContainer.lineFragmentPadding = 0;
+    [self.subbgView setImage:[[UIImage imageNamed:@"viewbg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 4, 4)]];
+    
+//    self.subcontainerView.layer.cornerRadius = 4;
+//    self.subcontainerView.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

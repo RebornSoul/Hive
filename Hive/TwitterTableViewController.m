@@ -203,7 +203,8 @@ typedef void (^HVErrorBlock)(NSError *error);
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
         
-        NSMutableArray *mutableData = [self.dataArray mutableCopy];
+        NSMutableArray *mutableData = [NSMutableArray new];
+        [mutableData addObjectsFromArray:self.dataArray];
         
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(insertIndex, addedCount)];
         [mutableData insertObjects:nodeArray atIndexes:indexSet];
@@ -322,6 +323,7 @@ typedef void (^HVErrorBlock)(NSError *error);
     
     if (node.nodeType == kTweetTableCellTypeLoader && !self.isLoading) {
         HVDataNode *lastNode = [self lastTweetNodeFromArray:self.dataArray];
+        NSLog(@"Last id: %@", lastNode.tweet.idStr);
         [self loadTweetsMaxId:lastNode.tweet.idStr];
     }
 }

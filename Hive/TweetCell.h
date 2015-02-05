@@ -12,6 +12,8 @@
 
 @interface TweetCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UIImageView *subbgView;
+
 @property (nonatomic, weak) IBOutlet UIImageView *userpicImageView;
 @property (nonatomic, weak) IBOutlet UITextView *tweetTextView;
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
