@@ -145,7 +145,6 @@ typedef void (^HVErrorBlock)(NSError *error);
 
 - (void) setupDataProvider {
     self.dataArray = [NSArray new];
-    
     __weak __typeof(self) weakSelf = self;
     
     self.configureCellBlock = ^(UITableViewCell *cell, HVDataNode *node, NSIndexPath *indexPath) {
@@ -160,6 +159,8 @@ typedef void (^HVErrorBlock)(NSError *error);
                                         forState:UIControlStateNormal];
                 [tweetCell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount]
                                         forState:UIControlStateNormal];
+                
+                [tweetCell.timestampLabel setText:[weakSelf diffStringFromDate:node.tweet.createdAt toDate:[NSDate date]]];
                 
                 NSString *imagePath = node.tweet.user.profileImageUrl;
                 [[HVImageBank sharedInstance]
@@ -377,6 +378,36 @@ typedef void (^HVErrorBlock)(NSError *error);
         default:
             break;
     }
+}
+
+- (NSString *) diffStringFromDate:(NSDate *)date1 toDate:(NSDate *)date2 {
+    
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSUInteger unitFlags = NSWeekOfMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    NSDateComponents *components = [gregorian components:unitFlags
+                                                fromDate:date1
+                                                  toDate:date2 options:0];
+    
+    NSInteger weeks = [components weekOfYear];
+    NSInteger days = [components day];
+    NSInteger hours = [components hour];
+    NSInteger minutes = [components minute];
+    NSInteger seconds = [components second];
+    
+    if (weeks != NSNotFound) { // Here we use full date format
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MM.dd.yyyy"];
+        return [formatter stringFromDate:date1];
+    } else { // Construct string with the biggest component
+        if (days != NSNotFound && days > 0) return [NSString stringWithFormat:@"%li d", (long)days]; else
+            if (hours != NSNotFound && hours > 0) return [NSString stringWithFormat:@"%li hr", (long)hours]; else
+                if (minutes != NSNotFound && minutes > 0) return [NSString stringWithFormat:@"%li min", (long)minutes]; else
+                    if (seconds != NSNotFound) return @"now";
+    }
+    return @"Error";
 }
 
 @end

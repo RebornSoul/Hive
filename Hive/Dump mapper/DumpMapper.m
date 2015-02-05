@@ -39,8 +39,10 @@
 + (Tweet *) mapTweetNode:(id)node {
     Tweet *tw = [Tweet new];
     NSDateFormatter *tweetDF = [[NSDateFormatter alloc] init];
-    [tweetDF setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
-    tw.createdAt = [tweetDF dateFromString:node[@"created_at"]];
+    [tweetDF setDateFormat:@"eee MMM dd HH:mm:ss ZZ yyyy"];
+    [tweetDF setLocale: [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    NSString *dateString = node[@"created_at"];
+    tw.createdAt = [tweetDF dateFromString:dateString];
     tw.text = node[@"text"];
     tw.idStr = node[@"id_str"];
     tw.retweetCount = [node[@"retweet_count"] integerValue];
