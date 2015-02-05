@@ -76,7 +76,7 @@ const CGFloat HVTweetCellControlPanelHeight = 30.0f;
     self.tweetTextView.textContainerInset = UIEdgeInsetsZero;
     self.tweetTextView.textContainer.lineFragmentPadding = 0;
     [self.subbgView setImage:[[UIImage imageNamed:@"viewbg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 4, 4)]];
-    
+    [self.dateRibbonImage setImage:[[UIImage imageNamed:@"ribbon.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 3, 5, 9)]];
 //    self.subcontainerView.layer.cornerRadius = 4;
 //    self.subcontainerView.layer.masksToBounds = YES;
 }

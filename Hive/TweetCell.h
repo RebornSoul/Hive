@@ -18,6 +18,7 @@
 @property (nonatomic, weak) IBOutlet UITextView *tweetTextView;
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timestampLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *dateRibbonImage;
 @property (nonatomic, weak) IBOutlet UIImageView *tweetImageView;
 
 @property (nonatomic, weak) IBOutlet UIButton *answerButton;
