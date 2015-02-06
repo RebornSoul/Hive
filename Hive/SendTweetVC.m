@@ -20,7 +20,7 @@ typedef void (^HVErrorBlock)(NSError *error);
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *screennameLabel;
 @property (nonatomic, weak) IBOutlet UITextView *textView;
-@property (nonatomic, weak) IBOutlet UIView *controlsPanel;
+@property (nonatomic, weak) IBOutlet UIToolbar *controlsPanel;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;

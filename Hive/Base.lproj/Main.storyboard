@@ -245,37 +245,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text here" translatesAutoresizingMaskIntoConstraints="NO" id="bcn-mk-kkG">
-                                <rect key="frame" x="0.0" y="89" width="320" height="440"/>
+                                <rect key="frame" x="0.0" y="89" width="320" height="435"/>
                                 <color key="backgroundColor" red="1" green="0.71593769510000005" blue="0.80029760429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhn-lA-4kx">
-                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXo-fa-Yk7">
-                                        <rect key="frame" x="8" y="5" width="60" height="30"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <state key="normal" title="Location">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SE-GI-RtQ">
-                                        <rect key="frame" x="266" y="5" width="43" height="30"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <state key="normal" title="Image">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="iSD-NX-kLf"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JN4-cL-pHi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JN4-cL-pHi">
                                 <rect key="frame" x="0.0" y="8" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0kc-0G-Wao"/>
@@ -294,6 +269,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PJ-CP-MEh">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ll6-XT-EIt"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ebc-e8-cag"/>
+                                    <barButtonItem image="location.png" id="4jS-77-saM"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="niy-SQ-dNf"/>
+                                    <barButtonItem image="photo.png" id="6ya-zd-8ZP"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8Aq-z6-UXY"/>
+                                </items>
+                                <color key="tintColor" red="0.34341077302631584" green="0.17407833763187847" blue="0.074727781180908934" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -301,22 +290,22 @@
                             <constraint firstItem="bcn-mk-kkG" firstAttribute="top" secondItem="F8k-Fq-j6e" secondAttribute="bottom" constant="8" id="3hi-UW-Raw"/>
                             <constraint firstItem="bcn-mk-kkG" firstAttribute="leading" secondItem="J4U-Qu-meY" secondAttribute="leading" id="4Kh-9C-AGF"/>
                             <constraint firstItem="397-Us-eOI" firstAttribute="top" secondItem="kfO-3N-GYT" secondAttribute="bottom" constant="12" id="8j9-l2-vbf"/>
+                            <constraint firstItem="7PJ-CP-MEh" firstAttribute="leading" secondItem="J4U-Qu-meY" secondAttribute="leading" id="98X-Ir-ra5"/>
                             <constraint firstItem="JN4-cL-pHi" firstAttribute="leading" secondItem="J4U-Qu-meY" secondAttribute="leading" id="FXT-6B-IJ1"/>
-                            <constraint firstItem="bhn-lA-4kx" firstAttribute="leading" secondItem="J4U-Qu-meY" secondAttribute="leading" id="FpI-LB-yEe"/>
                             <constraint firstAttribute="trailing" secondItem="98O-QU-8Me" secondAttribute="trailing" constant="7" id="HCC-Fg-Nbb"/>
+                            <constraint firstAttribute="trailing" secondItem="7PJ-CP-MEh" secondAttribute="trailing" id="INj-VG-RNQ"/>
                             <constraint firstItem="1UY-RG-DUO" firstAttribute="leading" secondItem="397-Us-eOI" secondAttribute="trailing" constant="7" id="Imy-YN-F6t"/>
                             <constraint firstItem="Ic2-m2-uL4" firstAttribute="leading" secondItem="F8k-Fq-j6e" secondAttribute="trailing" constant="8" id="NNU-Jv-KVM"/>
                             <constraint firstItem="1UY-RG-DUO" firstAttribute="top" secondItem="kfO-3N-GYT" secondAttribute="bottom" constant="8" id="REo-7u-TZe"/>
                             <constraint firstAttribute="trailing" secondItem="Ic2-m2-uL4" secondAttribute="trailing" constant="7" id="Wwl-78-Ryh"/>
-                            <constraint firstItem="WMk-XL-mEc" firstAttribute="top" secondItem="bhn-lA-4kx" secondAttribute="bottom" priority="999" id="agN-NN-kwe"/>
+                            <constraint firstItem="WMk-XL-mEc" firstAttribute="top" secondItem="7PJ-CP-MEh" secondAttribute="bottom" priority="999" id="avs-zF-G0E"/>
                             <constraint firstItem="F8k-Fq-j6e" firstAttribute="top" secondItem="J4U-Qu-meY" secondAttribute="top" constant="41" id="dea-rK-OKI"/>
+                            <constraint firstItem="7PJ-CP-MEh" firstAttribute="top" secondItem="bcn-mk-kkG" secondAttribute="bottom" id="dmr-Ss-hsW"/>
                             <constraint firstItem="98O-QU-8Me" firstAttribute="leading" secondItem="F8k-Fq-j6e" secondAttribute="trailing" constant="8" id="fAQ-Nf-GZd"/>
                             <constraint firstItem="Ic2-m2-uL4" firstAttribute="top" secondItem="J4U-Qu-meY" secondAttribute="top" constant="41" id="hNJ-en-b2z"/>
                             <constraint firstItem="98O-QU-8Me" firstAttribute="top" secondItem="J4U-Qu-meY" secondAttribute="top" constant="60" id="j1X-DT-ydF"/>
-                            <constraint firstItem="bhn-lA-4kx" firstAttribute="top" secondItem="bcn-mk-kkG" secondAttribute="bottom" constant="-1" id="jvz-Ie-2sT"/>
                             <constraint firstItem="F8k-Fq-j6e" firstAttribute="leading" secondItem="J4U-Qu-meY" secondAttribute="leading" constant="10" id="mge-W0-mRd"/>
                             <constraint firstAttribute="trailing" secondItem="1UY-RG-DUO" secondAttribute="trailing" constant="7" id="oes-lt-06f"/>
-                            <constraint firstAttribute="trailing" secondItem="bhn-lA-4kx" secondAttribute="trailing" id="sH7-mI-oHI"/>
                             <constraint firstAttribute="trailing" secondItem="bcn-mk-kkG" secondAttribute="trailing" id="wMY-fh-enQ"/>
                         </constraints>
                     </view>
@@ -324,7 +313,7 @@
                     <connections>
                         <outlet property="avatarView" destination="F8k-Fq-j6e" id="fZV-6V-jkQ"/>
                         <outlet property="closeButton" destination="JN4-cL-pHi" id="3ZP-Hw-G3f"/>
-                        <outlet property="controlsPanel" destination="bhn-lA-4kx" id="UEw-Lg-xJg"/>
+                        <outlet property="controlsPanel" destination="7PJ-CP-MEh" id="vq5-Uj-eqf"/>
                         <outlet property="counterLabel" destination="397-Us-eOI" id="DeD-zR-b6l"/>
                         <outlet property="screennameLabel" destination="98O-QU-8Me" id="z08-ne-Qcz"/>
                         <outlet property="sendButton" destination="1UY-RG-DUO" id="gDR-Ay-gwN"/>
@@ -408,7 +397,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRY-1Q-4D3">
                                                     <rect key="frame" x="132" y="117" width="60" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <state key="normal" image="reply.png">
+                                                    <state key="normal" image="pencil.png">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -418,9 +407,9 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSy-sW-AWK">
                                                     <rect key="frame" x="208" y="117" width="60" height="30"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <state key="normal" title=" 42" image="retweet_off.png">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
+                                                    <state key="normal" title="78" image="megaphone.png">
+                                                        <color key="titleColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -447,9 +436,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="5t7-qF-wfF"/>
                                                         <constraint firstAttribute="width" constant="60" id="V9q-JC-eKs"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <state key="normal" title="12" image="star_off.png">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
+                                                    <state key="normal" title="12" image="star.png">
+                                                        <color key="titleColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -681,8 +670,10 @@
     </scenes>
     <resources>
         <image name="check.png" width="30" height="30"/>
-        <image name="reply.png" width="20" height="12"/>
-        <image name="retweet_off.png" width="20" height="12"/>
-        <image name="star_off.png" width="12" height="12"/>
+        <image name="location.png" width="50" height="30"/>
+        <image name="megaphone.png" width="30" height="30"/>
+        <image name="pencil.png" width="30" height="30"/>
+        <image name="photo.png" width="50" height="30"/>
+        <image name="star.png" width="30" height="30"/>
     </resources>
 </document>
