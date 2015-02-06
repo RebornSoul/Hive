@@ -87,6 +87,11 @@ const CGFloat HVTweetCellDefaultImageHeight = 200.0f;
     return ceil(boundingRect.size.height);
 }
 
+- (void) prepareForReuse {
+    self.tweetImageView.image = nil;
+    self.userpicImageView.image = nil;
+}
+
 - (void)awakeFromNib {
     
     [super awakeFromNib];

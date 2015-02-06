@@ -26,6 +26,9 @@ typedef void (^HVErrorBlock)(NSError *error);
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 @property (nonatomic, copy) HVErrorBlock errorBlock;
 @property (nonatomic, strong) User *currentUser;
+
+- (IBAction)didPressCloseButton:(id)sender;
+- (IBAction)didPressSendButton:(id)sender;
 @end
 
 @implementation SendTweetVC
@@ -74,5 +77,13 @@ typedef void (^HVErrorBlock)(NSError *error);
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)didPressCloseButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didPressSendButton:(id)sender {
+    
+}
 
 @end
