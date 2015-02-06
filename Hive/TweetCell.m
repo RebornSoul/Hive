@@ -13,7 +13,12 @@
 const CGFloat HVTweetCellTweetFontSize = 14.0f;
 const CGFloat HVTweetCellUsernameFontSize = 14.0f;
 const CGFloat HVTweetCellTimestampFontSize = 12.0f;
-const CGFloat HVTweetCellPadding = 10.0f;
+const CGFloat HVTweetCellTopPadding = 32.0f;
+const CGFloat HVTweetCellBottomPadding = 20.0f;
+const CGFloat HVTweetCellLeftPadding = 44.0f;
+const CGFloat HVTweetCellRightPadding = 8.0f;
+const CGFloat HVTweetCellVerticalPaddings = 0.0f;
+
 const CGFloat HVTweetCellAvatarWidth = 40.0f;
 const CGFloat HVTweetCellAvatarHeight = 40.0f;
 const CGFloat HVTweetCellControlPanelHeight = 30.0f;
@@ -21,13 +26,14 @@ const CGFloat HVTweetCellControlPanelHeight = 30.0f;
 @implementation TweetCell
 
 + (CGFloat) heightForTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width {
-    CGFloat textViewWidth = width - HVTweetCellPadding - HVTweetCellAvatarWidth - HVTweetCellPadding;
+    CGFloat textViewWidth = width - HVTweetCellLeftPadding - HVTweetCellRightPadding;
     
-    CGFloat calculatedHeight = HVTweetCellPadding +
+    CGFloat calculatedHeight = HVTweetCellTopPadding +
     [[self class] heightForUsernameFromTweet:tweet constrainedToWidth:textViewWidth] +
     [[self class] heightForTextFromTweet:tweet constrainedToWidth:textViewWidth] +
     [[self class] heightForControlPanel] +
-    HVTweetCellPadding;
+    HVTweetCellBottomPadding +
+    HVTweetCellVerticalPaddings;
     
     return MAX([[self class] minimumHeightShowingImage:tweet.imageUrl], calculatedHeight);
 }
@@ -52,7 +58,7 @@ const CGFloat HVTweetCellControlPanelHeight = 30.0f;
     if (hasImage) {
         return 120.0f;
     } else {
-        return HVTweetCellPadding + HVTweetCellControlPanelHeight + HVTweetCellPadding;
+        return HVTweetCellTopPadding + HVTweetCellControlPanelHeight + HVTweetCellBottomPadding +HVTweetCellVerticalPaddings;
     }
 }
 

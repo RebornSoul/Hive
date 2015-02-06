@@ -13,6 +13,7 @@
 #import "User.h"
 #import "TweetCell.h"
 #import "HVImageBank.h"
+#import "SendTweetVC.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define USE_SIZE_CACHE 1
@@ -243,15 +244,19 @@ typedef void (^HVErrorBlock)(NSError *error);
     return [NSArray arrayWithArray:returnedArray];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
+    
+    if ([segue.identifier isEqualToString:@"replyTweet"]) {
+        SendTweetVC *stvc = [segue destinationViewController];
+        HVDataNode *node = self.dataArray[sender.tag];
+        stvc.replyToTweet = node.tweet;
+        stvc.currentAccount = self.currentAccount;
+    }
+    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

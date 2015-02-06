@@ -12,6 +12,7 @@
 static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
 
 #define TWITTER_PATH @"https://api.twitter.com/1.1/statuses/home_timeline.json"
+#define CURRENT_USER_PATH @"https://api.twitter.com/1.1/account/verify_credentials.json"
 
 @implementation DataManager
 
@@ -58,26 +59,43 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
               withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
                      failure:(void(^)(NSError *error))failureBlock {
     
-    //  The endpoint that we wish to call
     NSURL *url = [NSURL URLWithString:TWITTER_PATH];
-    
-    //  Build the request with our parameter
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
                                             requestMethod:SLRequestMethodGET
                                                       URL:url
                                                parameters:params];
     
-    
-    // Attach the account object to this request
     [request setAccount:account];
+    [DataManager performRequest:request withURL:url withCompletion:completionBlock failure:failureBlock];
+}
+
+
++ (void) getCurrentUserInAccount:(ACAccount *)account
+                  withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                         failure:(void(^)(NSError *error))failureBlock {
+    NSURL *url = [NSURL URLWithString:CURRENT_USER_PATH];
+    NSDictionary *params = @{@"skip_status": @"true"};
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodGET
+                                                      URL:url
+                                               parameters:params];
     
-    // make the connection, ensuring that it is made on the main runloop
-    
+    [request setAccount:account];
+    [DataManager performRequest:request withURL:url withCompletion:completionBlock failure:failureBlock];
+}
+
++ (void) performRequest:(SLRequest *)request
+                withURL:(NSURL *)url
+         withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                failure:(void(^)(NSError *error))failureBlock {
     [request performRequestWithHandler:^(NSData *responseData,
                                          NSHTTPURLResponse *urlResponse, NSError *error)
      {
          if (urlResponse.statusCode >= 400 && urlResponse.statusCode <= 499) {
-             NSString *errorText = [NSString stringWithFormat:@"Received code %li", (long)urlResponse.statusCode];
+             NSError *jsonError;
+             NSDictionary *errorSerialization = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&jsonError];
+             NSArray *errors = errorSerialization[@"errors"];
+             NSString *errorText = [NSString stringWithFormat:@"Http code %li: %@", (long)urlResponse.statusCode, [DataManager compoundStrongFromTwitterErrors:errors]];
              NSError *statusError = [NSError errorWithDomain:HVDataManagerErrorDomain
                                                         code:urlResponse.statusCode
                                                     userInfo:@{NSLocalizedDescriptionKey:errorText}];
@@ -92,9 +110,19 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
              } else {
                  if (completionBlock) completionBlock (responseData, urlResponse);
              }
-
+             
          }
      }];
 }
+
++ (NSString *) compoundStrongFromTwitterErrors:(NSArray *)twitterErrors {
+    NSMutableString *returnedValue = [NSMutableString new];
+    for (NSDictionary *error in twitterErrors) {
+        NSString *errorString = [NSString stringWithFormat:@"\n%i - %@", [error[@"code"] intValue], error[@"message"]];
+        [returnedValue appendString:errorString];
+    }
+    return [NSString stringWithString:returnedValue];
+}
+
 
 @end

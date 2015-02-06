@@ -36,6 +36,25 @@
     });
 }
 
++ (void) performUserMappingWithData:(NSData *)rawData
+                     withCompletion:(void(^)(User *result))completionBlock
+                            failure:(void(^)(NSError *error))failureBlock {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSError *jsonParsingError;
+        NSDictionary *userData = [NSJSONSerialization JSONObjectWithData:rawData options:0 error:&jsonParsingError];
+        
+        if (jsonParsingError) {
+            if (failureBlock) failureBlock (jsonParsingError);
+        } else {
+            User *mappedUser = [DumpMapper mapUserNode:userData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completionBlock) completionBlock (mappedUser);
+            });
+        }
+    });
+
+}
+
 + (Tweet *) mapTweetNode:(id)node {
     Tweet *tw = [Tweet new];
     NSDateFormatter *tweetDF = [[NSDateFormatter alloc] init];

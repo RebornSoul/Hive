@@ -12,6 +12,10 @@
 
 @interface DataManager : NSObject
 
++ (void) getCurrentUserInAccount:(ACAccount *)account
+                  withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                         failure:(void(^)(NSError *error))failureBlock;
+
 + (void) retrieveAccountFeed:(ACAccount *)account
               withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
                      failure:(void(^)(NSError *error))failureBlock;
