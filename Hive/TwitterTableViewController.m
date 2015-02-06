@@ -363,7 +363,7 @@ typedef void (^HVErrorBlock)(NSError *error);
     
     if (node.nodeType == kTweetTableCellTypeNormal) {
         TweetCell *_cell = (TweetCell *) cell;
-        _cell.imageContainerHeightConstraint.constant = [node.tweet hasPhotoMedia] ? [TweetCell defaultImageHeight] : 0;
+        _cell.imageContainerHeightConstraint.constant = [node.tweet hasPhotoMedia] ? [TweetCell defaultImageHeight] : [TweetCell defaultMinimumImagecontainerHeight];
     }
 }
 

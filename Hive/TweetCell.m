@@ -10,21 +10,22 @@
 #import "Tweet.h"
 #import "User.h"
 
+// Font sizes
 const CGFloat HVTweetCellTweetFontSize = 14.0f;
 const CGFloat HVTweetCellUsernameFontSize = 14.0f;
 const CGFloat HVTweetCellTimestampFontSize = 12.0f;
-const CGFloat HVTweetCellTopPadding = 32.0f;
-const CGFloat HVTweetCellBottomPadding = 20.0f;
-const CGFloat HVTweetCellLeftPadding = 44.0f;
-const CGFloat HVTweetCellRightPadding = 8.0f;
-const CGFloat HVTweetCellVerticalPaddings = 0.0f;
+
+// Paddings
+const CGFloat HVTweetCellTopPadding = 39.0f; // Top view with username and date
+const CGFloat HVTweetCellBottomPadding = 34.0f; // Controls panel
+const CGFloat HVTweetCellLeftPadding = 64.0f;
+const CGFloat HVTweetCellRightPadding = 16.0f;
 
 const CGFloat HVTweetCellAvatarWidth = 40.0f;
 const CGFloat HVTweetCellAvatarHeight = 40.0f;
-const CGFloat HVTweetCellControlPanelHeight = 30.0f;
 
-const CGFloat HVTweetCellDefaultImageHeight = 200.0f;
-
+const CGFloat HVTweetCellDefaultImageContainerHeight = 200.0f;
+const CGFloat HVTweetCellMinimumImageContainerHeight = 8.0f;
 
 @implementation TweetCell
 
@@ -33,21 +34,23 @@ const CGFloat HVTweetCellDefaultImageHeight = 200.0f;
     CGFloat textViewWidth = width - HVTweetCellLeftPadding - HVTweetCellRightPadding;
     
     CGFloat calculatedHeight = HVTweetCellTopPadding +
-    [[self class] heightForUsernameFromTweet:tweet constrainedToWidth:textViewWidth] +
     [[self class] heightForTextFromTweet:tweet constrainedToWidth:textViewWidth] +
-    [[self class] heightForControlPanel] +
-    HVTweetCellBottomPadding +
-    HVTweetCellVerticalPaddings;
+    HVTweetCellBottomPadding;
     
     BOOL hasImageFlag = [tweet hasPhotoMedia];
     
-    if (hasImageFlag) calculatedHeight += HVTweetCellDefaultImageHeight;
+    if (hasImageFlag) calculatedHeight += HVTweetCellDefaultImageContainerHeight;
+    else calculatedHeight += HVTweetCellMinimumImageContainerHeight;
     
-    return MAX([[self class] minimumHeightShowingImage:hasImageFlag], calculatedHeight);
+    return MAX([[self class] minimumHeightShowingImage:hasImageFlag constrainedToWidth:width], calculatedHeight);
+}
+
++ (CGFloat) defaultMinimumImagecontainerHeight {
+    return HVTweetCellMinimumImageContainerHeight;
 }
 
 + (CGFloat) defaultImageHeight {
-    return HVTweetCellDefaultImageHeight;
+    return HVTweetCellDefaultImageContainerHeight;
 }
 
 + (CGFloat) heightForTextFromTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width {
@@ -60,17 +63,12 @@ const CGFloat HVTweetCellDefaultImageHeight = 200.0f;
                               constrainedToWidth: width];
 }
 
-+ (CGFloat) heightForControlPanel {
-    return HVTweetCellControlPanelHeight;
-}
 
-
-
-+ (CGFloat) minimumHeightShowingImage:(BOOL)hasImage {
++ (CGFloat) minimumHeightShowingImage:(BOOL)hasImage constrainedToWidth:(CGFloat)width {
     if (hasImage) {
-        return 120.0f;
+        return HVTweetCellTopPadding + HVTweetCellBottomPadding + HVTweetCellDefaultImageContainerHeight;
     } else {
-        return HVTweetCellTopPadding + HVTweetCellControlPanelHeight + HVTweetCellBottomPadding +HVTweetCellVerticalPaddings;
+        return HVTweetCellTopPadding + HVTweetCellBottomPadding;
     }
 }
 

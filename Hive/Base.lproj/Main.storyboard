@@ -156,13 +156,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e4r-OU-UJB">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4r-OU-UJB">
                                 <rect key="frame" x="0.0" y="56" width="375" height="611"/>
                                 <connections>
                                     <segue destination="z12-PB-btp" kind="embed" identifier="container_table" id="jIj-ET-9pD"/>
                                 </connections>
                             </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dgd-M9-CO6">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dgd-M9-CO6">
                                 <rect key="frame" x="88" y="20" width="200" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="R1v-2R-PpI"/>
@@ -180,7 +180,7 @@
                             <constraint firstItem="CJo-W1-Xo3" firstAttribute="top" secondItem="e4r-OU-UJB" secondAttribute="bottom" id="FyZ-D1-XR4"/>
                             <constraint firstItem="e4r-OU-UJB" firstAttribute="leading" secondItem="jjg-Lw-IWn" secondAttribute="leading" id="SAy-lx-TpS"/>
                             <constraint firstAttribute="centerX" secondItem="dgd-M9-CO6" secondAttribute="centerX" id="hyK-CC-ZdI"/>
-                            <constraint firstItem="dgd-M9-CO6" firstAttribute="top" secondItem="IJ2-aA-Ixp" secondAttribute="bottom" id="mB7-Me-uzN"/>
+                            <constraint firstItem="dgd-M9-CO6" firstAttribute="top" secondItem="IJ2-aA-Ixp" secondAttribute="bottom" constant="20" id="mB7-Me-uzN"/>
                             <constraint firstItem="e4r-OU-UJB" firstAttribute="trailing" secondItem="jjg-Lw-IWn" secondAttribute="trailing" id="sW6-Xb-2qv"/>
                         </constraints>
                     </view>
@@ -353,26 +353,24 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i0U-LF-NR1" id="SuR-la-CaU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cum-6d-goI">
+                                                <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cum-6d-goI" userLabel="Background image">
                                                     <rect key="frame" x="8" y="5" width="359" height="146"/>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfq-j3-z2Z">
-                                                    <rect key="frame" x="64" y="95" width="295" height="27"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfq-j3-z2Z" userLabel="Image container">
+                                                    <rect key="frame" x="64" y="114" width="295" height="8"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image" customClass="AvatarView">
-                                                            <rect key="frame" x="0.0" y="4" width="295" height="19"/>
-                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image" customClass="AvatarView"/>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="0.89104603293413176" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="HG9-ae-Awk" secondAttribute="bottom" constant="4" id="82h-d6-bdq"/>
-                                                        <constraint firstItem="HG9-ae-Awk" firstAttribute="top" secondItem="Gfq-j3-z2Z" secondAttribute="top" constant="4" id="8Yk-3n-voy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="HG9-ae-Awk" secondAttribute="bottom" priority="999" constant="4" id="82h-d6-bdq"/>
+                                                        <constraint firstItem="HG9-ae-Awk" firstAttribute="top" secondItem="Gfq-j3-z2Z" secondAttribute="top" priority="999" constant="4" id="8Yk-3n-voy"/>
                                                         <constraint firstAttribute="trailing" secondItem="HG9-ae-Awk" secondAttribute="trailing" id="A6d-Lz-lmO"/>
-                                                        <constraint firstAttribute="height" constant="27" id="CT7-L2-CQa"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="27" id="CT7-L2-CQa"/>
                                                         <constraint firstItem="HG9-ae-Awk" firstAttribute="leading" secondItem="Gfq-j3-z2Z" secondAttribute="leading" id="SWC-ac-rhQ"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3g-5q-iUU">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3g-5q-iUU" userLabel="Controls container">
                                                     <rect key="frame" x="0.0" y="122" width="375" height="34"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRY-1Q-4D3">
@@ -415,7 +413,7 @@
                                                             </state>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="0.87812266092814373" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="3fr-gy-3MK"/>
                                                         <constraint firstItem="qKP-su-f27" firstAttribute="top" secondItem="K3g-5q-iUU" secondAttribute="top" id="Drw-7M-3h9"/>
@@ -426,7 +424,7 @@
                                                         <constraint firstItem="RRY-1Q-4D3" firstAttribute="top" secondItem="K3g-5q-iUU" secondAttribute="top" id="xVJ-tX-cTo"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1d-hT-m6J">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1d-hT-m6J" userLabel="Username container">
                                                     <rect key="frame" x="64" y="0.0" width="311" height="39"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gJS-TJ-z2J">
@@ -484,7 +482,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.7429593937125748" green="1" blue="1" alpha="0.37" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="7oj-3M-Zak" firstAttribute="top" secondItem="P1d-hT-m6J" secondAttribute="top" constant="13" id="CAB-Wc-QRq"/>
                                                         <constraint firstAttribute="trailing" secondItem="7oj-3M-Zak" secondAttribute="trailing" constant="8" id="ICy-LQ-FYx"/>
@@ -504,7 +502,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goe-vB-ygl">
-                                                    <rect key="frame" x="64" y="39" width="295" height="56"/>
+                                                    <rect key="frame" x="64" y="39" width="295" height="75"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>

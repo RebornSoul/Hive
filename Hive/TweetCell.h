@@ -29,6 +29,7 @@
 
 + (CGFloat) heightForTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width;
 + (CGFloat) defaultImageHeight;
++ (CGFloat) defaultMinimumImagecontainerHeight;
 
 + (NSAttributedString *) usernameStringFromUser:(User *)user;
 + (NSAttributedString *) tweetTextFromTweet:(Tweet *)tweet;
