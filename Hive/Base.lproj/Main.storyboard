@@ -347,19 +347,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="611"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="156" id="i0U-LF-NR1" userLabel="Tweet cell" customClass="TweetCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="253" id="i0U-LF-NR1" userLabel="Tweet cell" customClass="TweetCell">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i0U-LF-NR1" id="SuR-la-CaU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cum-6d-goI" userLabel="Background image">
-                                                    <rect key="frame" x="8" y="5" width="359" height="146"/>
+                                                    <rect key="frame" x="8" y="5" width="359" height="243"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfq-j3-z2Z" userLabel="Image container">
-                                                    <rect key="frame" x="64" y="114" width="295" height="8"/>
+                                                    <rect key="frame" x="64" y="188" width="295" height="27"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image" customClass="AvatarView"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image" customClass="AvatarView">
+                                                            <rect key="frame" x="0.0" y="4" width="295" height="19"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -371,7 +373,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3g-5q-iUU" userLabel="Controls container">
-                                                    <rect key="frame" x="0.0" y="122" width="375" height="34"/>
+                                                    <rect key="frame" x="0.0" y="215" width="375" height="38"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRY-1Q-4D3">
                                                             <rect key="frame" x="132" y="0.0" width="60" height="30"/>
@@ -415,7 +417,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="3fr-gy-3MK"/>
+                                                        <constraint firstAttribute="height" constant="38" id="3fr-gy-3MK"/>
                                                         <constraint firstItem="qKP-su-f27" firstAttribute="top" secondItem="K3g-5q-iUU" secondAttribute="top" id="Drw-7M-3h9"/>
                                                         <constraint firstItem="CSy-sW-AWK" firstAttribute="top" secondItem="K3g-5q-iUU" secondAttribute="top" id="Ewn-7t-lu1"/>
                                                         <constraint firstItem="qKP-su-f27" firstAttribute="leading" secondItem="CSy-sW-AWK" secondAttribute="trailing" constant="16" id="F6R-M8-Yiv"/>
@@ -502,7 +504,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goe-vB-ygl">
-                                                    <rect key="frame" x="64" y="39" width="295" height="75"/>
+                                                    <rect key="frame" x="64" y="39" width="295" height="149"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>

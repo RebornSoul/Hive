@@ -17,7 +17,7 @@ const CGFloat HVTweetCellTimestampFontSize = 12.0f;
 
 // Paddings
 const CGFloat HVTweetCellTopPadding = 39.0f; // Top view with username and date
-const CGFloat HVTweetCellBottomPadding = 34.0f; // Controls panel
+const CGFloat HVTweetCellBottomPadding = 38.0f; // Controls panel
 const CGFloat HVTweetCellLeftPadding = 64.0f;
 const CGFloat HVTweetCellRightPadding = 16.0f;
 
