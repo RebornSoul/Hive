@@ -11,7 +11,7 @@
 #import "User.h"
 #import "Media.h"
 
-#define HV_MAPPER_LOG 1
+#define HV_MAPPER_LOG 0
 
 @implementation DumpMapper
 

@@ -224,7 +224,7 @@ typedef void (^HVErrorBlock)(NSError *error);
     if (self.isLoading) { // Waiting for a page
         
         NSInteger addedCount = [nodeArray count];
-        NSInteger insertIndex = [self.dataArray indexOfObject:[self lastTweetNodeFromArray:self.dataArray]];
+        NSInteger insertIndex = [self.dataArray indexOfObject:[self lastTweetNodeFromArray:self.dataArray]] + 1;
         
         NSMutableArray *indexPaths = [NSMutableArray new];
         for (NSInteger i = insertIndex; i < insertIndex + addedCount; i++) {
@@ -358,7 +358,6 @@ typedef void (^HVErrorBlock)(NSError *error);
     
     if (node.nodeType == kTweetTableCellTypeLoader && !self.isLoading) {
         HVDataNode *lastNode = [self lastTweetNodeFromArray:self.dataArray];
-        NSLog(@"Last id: %@", lastNode.tweet.idStr);
         [self loadTweetsMaxId:lastNode.tweet.idStr];
     }
     
@@ -373,7 +372,6 @@ typedef void (^HVErrorBlock)(NSError *error);
         for (NSUInteger i = array.count-1; i > 0; i --) {
             HVDataNode *node = self.dataArray[i];
             if (node.nodeType == kTweetTableCellTypeNormal) {
-                NSLog(@"Node: %@", node);
                 return node;
             }
         }

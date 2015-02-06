@@ -23,8 +23,6 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:@"true" forKey:@"stall_warnings"];
     [params setObject:sinceId forKey:@"since_id"];
-    [params setObject:@"3" forKey:@"count"];
-
     
     [[self class] retrieveAccountFeed:account
                                params:params
@@ -41,7 +39,6 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:@"true" forKey:@"stall_warnings"];
     [params setObject:[NSString stringWithFormat:@"%li", (long)maxIdInt] forKey:@"max_id"];
-    [params setObject:@"3" forKey:@"count"];
     
     [[self class] retrieveAccountFeed:account
                                params:params
@@ -54,8 +51,6 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:@"true" forKey:@"stall_warnings"];
-    [params setObject:@"3" forKey:@"count"];
-
     
     [[self class] retrieveAccountFeed:account
                                params:params
