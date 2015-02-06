@@ -8,6 +8,8 @@
 
 #import "ImageViewerController.h"
 
+#define CENTER_XY_HACK 0
+
 @interface ImageViewerController () <UIScrollViewDelegate>
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) UIImageView *currentImageView;
@@ -41,8 +43,15 @@
     viewsDictionary = NSDictionaryOfVariableBindings(scrollView, imageView);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|" options:0 metrics: 0 views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:0 metrics: 0 views:viewsDictionary]];
+    
+#if CENTER_XY_HACK
+    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[scrollView]-(<=1)-[imageView]" options:NSLayoutFormatAlignAllCenterY metrics: 0 views:viewsDictionary]];
+    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[scrollView]-(<=1)-[imageView]" options:NSLayoutFormatAlignAllCenterX metrics: 0 views:viewsDictionary]];
+#else
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[imageView]|" options:0 metrics: 0 views:viewsDictionary]];
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView]|" options:0 metrics: 0 views:viewsDictionary]];
+#endif
+    
 }
 
 - (void)didReceiveMemoryWarning {
