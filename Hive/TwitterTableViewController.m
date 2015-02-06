@@ -90,6 +90,14 @@ typedef void (^HVErrorBlock)(NSError *error);
     self.popupAnimationSet = [NSMutableSet new];
 #endif
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+}
+
+- (void) handleRefresh:(id)sender {
+    
 }
 
 - (void) loadData {
@@ -251,7 +259,6 @@ typedef void (^HVErrorBlock)(NSError *error);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-        
     }
 }
 
@@ -357,7 +364,7 @@ typedef void (^HVErrorBlock)(NSError *error);
     
     if (node.nodeType == kTweetTableCellTypeNormal) {
         TweetCell *_cell = (TweetCell *) cell;
-        _cell.bottomTextViewConstraint.constant = [node.tweet hasPhotoMedia] ? [TweetCell defaultImageHeight] : 0;
+        _cell.imageContainerHeightConstraint.constant = [node.tweet hasPhotoMedia] ? [TweetCell defaultImageHeight] : 0;
     }
 }
 
@@ -365,7 +372,10 @@ typedef void (^HVErrorBlock)(NSError *error);
     if (array.count) {
         for (NSUInteger i = array.count-1; i > 0; i --) {
             HVDataNode *node = self.dataArray[i];
-            if (node.nodeType == kTweetTableCellTypeNormal) return node;
+            if (node.nodeType == kTweetTableCellTypeNormal) {
+                NSLog(@"Node: %@", node);
+                return node;
+            }
         }
 
     }

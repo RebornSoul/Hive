@@ -11,6 +11,8 @@
 #import "User.h"
 #import "Media.h"
 
+#define HV_MAPPER_LOG 1
+
 @implementation DumpMapper
 
 + (void) performFeedMappingWithData:(NSData *)rawData
@@ -30,6 +32,11 @@
                 Tweet *mappedTweet = [DumpMapper mapTweetNode:node];
                 if (mappedTweet) [returnedArray addObject:mappedTweet];
             }
+            [returnedArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                Tweet *first = obj1;
+                Tweet *second = obj2;
+                return [second.idStr compare:first.idStr];
+            }];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completionBlock) completionBlock ([NSArray arrayWithArray:returnedArray]);
             });
@@ -81,7 +88,9 @@
         }
         tw.media = [NSArray arrayWithArray:temp];
     }
-
+#if HV_MAPPER_LOG
+    NSLog(@"Mapped Tweet %@", tw.idStr);
+#endif
     return tw;
 }
 
@@ -92,6 +101,9 @@
     user.screenName = node[@"screen_name"];
     user.location = node[@"location"];
     user.profileImageUrl = node[@"profile_image_url"];
+#if HV_MAPPER_LOG
+    NSLog(@"Mapped User %@", user.idStr);
+#endif
     return user;
 }
 
@@ -101,6 +113,9 @@
     m.type = node[@"type"];
     m.mediaUrl = node[@"media_url"];
     m.displayUrl = node[@"display_url"];
+#if HV_MAPPER_LOG
+    NSLog(@"Mapped Media %@", m.idStr);
+#endif
     return m;
 }
 

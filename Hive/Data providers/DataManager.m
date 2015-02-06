@@ -23,6 +23,8 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:@"true" forKey:@"stall_warnings"];
     [params setObject:sinceId forKey:@"since_id"];
+    [params setObject:@"3" forKey:@"count"];
+
     
     [[self class] retrieveAccountFeed:account
                                params:params
@@ -33,9 +35,13 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
                        maxId:(NSString *)maxId
               withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
                      failure:(void(^)(NSError *error))failureBlock {
+    
+    NSInteger maxIdInt = [maxId integerValue];
+    maxIdInt -= 1; // We need to decrement it in order to avoid from including last tweet in response.
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:@"true" forKey:@"stall_warnings"];
-    [params setObject:maxId forKey:@"max_id"];
+    [params setObject:[NSString stringWithFormat:@"%li", (long)maxIdInt] forKey:@"max_id"];
+    [params setObject:@"3" forKey:@"count"];
     
     [[self class] retrieveAccountFeed:account
                                params:params
@@ -48,6 +54,8 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:@"true" forKey:@"stall_warnings"];
+    [params setObject:@"3" forKey:@"count"];
+
     
     [[self class] retrieveAccountFeed:account
                                params:params

@@ -25,7 +25,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *favButton;
 @property (nonatomic, weak) IBOutlet UIButton *repostButton;
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bottomTextViewConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageContainerHeightConstraint;
 
 + (CGFloat) heightForTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width;
 + (CGFloat) defaultImageHeight;
