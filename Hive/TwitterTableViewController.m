@@ -212,10 +212,12 @@ typedef void (^HVErrorBlock)(NSError *error);
         [mutableData insertObjects:nodeArray atIndexes:indexSet];
         
         self.dataArray = [NSArray arrayWithArray:mutableData];
-        
-        [self.tableView beginUpdates];
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView endUpdates];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView beginUpdates];
+            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView endUpdates];
+
+        });
         self.isLoading = NO;
         
     } else { // First data is loading
@@ -228,7 +230,9 @@ typedef void (^HVErrorBlock)(NSError *error);
         [temp addObject:loaderNode];
         
         self.dataArray = [NSArray arrayWithArray:temp];
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
         
     }
 }
