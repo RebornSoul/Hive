@@ -53,7 +53,6 @@ static NSString * const HVImageBankErrorDomain = @"com.HVImageBank.Error";
                 
             default: {
                 if(httpStatusCode >= 400 && httpStatusCode <= 499) {
-                    //out of retries or got a 400 level error so don't retry
                     if(_imageCompletionBlock) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             NSError *imageLoadError = [NSError errorWithDomain:HVImageBankErrorDomain

@@ -205,7 +205,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8k-Fq-j6e" customClass="AvatarView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8k-Fq-j6e" customClass="RoundedImageView">
                                 <rect key="frame" x="10" y="42" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="KWt-Ph-O1k"/>
@@ -359,7 +359,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfq-j3-z2Z" userLabel="Image container">
                                                     <rect key="frame" x="64" y="188" width="295" height="27"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image" customClass="AvatarView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image" customClass="RoundedImageView">
                                                             <rect key="frame" x="0.0" y="4" width="295" height="19"/>
                                                         </imageView>
                                                     </subviews>
@@ -496,7 +496,7 @@
                                                         <constraint firstItem="7oj-3M-Zak" firstAttribute="leading" secondItem="ZTt-bn-tFc" secondAttribute="trailing" id="qab-4Y-zcm"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEl-tw-v5F" customClass="AvatarView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEl-tw-v5F" customClass="RoundedImageView">
                                                     <rect key="frame" x="16" y="13" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="ER4-B9-rnX"/>
@@ -682,11 +682,74 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="tableView" destination="Sqj-pr-MDx" id="TmF-hp-UIf"/>
+                        <segue destination="3Et-A9-gu6" kind="presentation" identifier="showImageViewer" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="jHi-JB-W3H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVo-ON-SmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1081.5" y="1213.5"/>
+        </scene>
+        <!--Image Viewer Controller-->
+        <scene sceneID="JJv-Wz-eM8">
+            <objects>
+                <viewController id="3Et-A9-gu6" customClass="ImageViewerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jz4-Cd-aEv"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pwt-jn-wdn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ymg-Q1-DDk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="8uH-W7-ior">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="3PM-tD-6ad" appends="YES" id="tq9-RC-iBs"/>
+                                </connections>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="yHq-eg-znx">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="llo-CM-pM3"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="reply.png" id="tYH-fq-jre"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="04h-5l-Tfv"/>
+                                    <barButtonItem image="megaphone.png" id="enx-UB-Fhu"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Wdz-FR-4Tl"/>
+                                    <barButtonItem image="star.png" id="KgH-i2-BJt"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XVT-8i-I9H"/>
+                                    <barButtonItem title="..." id="D9m-zu-qEo"/>
+                                </items>
+                                <color key="tintColor" red="0.35051612900157997" green="0.60726799990120062" blue="0.73924742353723405" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pwt-jn-wdn" firstAttribute="top" secondItem="yHq-eg-znx" secondAttribute="bottom" id="4Hh-bI-pNK"/>
+                            <constraint firstItem="Pwt-jn-wdn" firstAttribute="top" secondItem="8uH-W7-ior" secondAttribute="bottom" id="8Nc-Be-RXJ"/>
+                            <constraint firstAttribute="trailing" secondItem="8uH-W7-ior" secondAttribute="trailing" id="Hkh-4b-4f6"/>
+                            <constraint firstItem="yHq-eg-znx" firstAttribute="leading" secondItem="ymg-Q1-DDk" secondAttribute="leading" id="ZiK-k2-SUg"/>
+                            <constraint firstAttribute="trailing" secondItem="yHq-eg-znx" secondAttribute="trailing" id="upe-BS-69e"/>
+                            <constraint firstItem="8uH-W7-ior" firstAttribute="leading" secondItem="ymg-Q1-DDk" secondAttribute="leading" id="wYq-HS-Stz"/>
+                            <constraint firstItem="8uH-W7-ior" firstAttribute="top" secondItem="ymg-Q1-DDk" secondAttribute="top" id="y6p-EX-TwQ"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="scrollView" destination="8uH-W7-ior" id="LB0-DJ-VhJ"/>
+                        <outlet property="toolbar" destination="yHq-eg-znx" id="1DO-ji-TJJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oc3-Ea-KEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3PM-tD-6ad">
+                    <connections>
+                        <action selector="didTouchScrollView:" destination="3Et-A9-gu6" id="CSD-OC-i3i"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1081.5" y="1958.5"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="wlv-wk-Yax">

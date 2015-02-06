@@ -1,14 +1,14 @@
 //
-//  AvatarView.m
+//  RoundedImageView.m
 //  Hive
 //
 //  Created by Yury Nechaev on 05.02.15.
 //  Copyright (c) 2015 Yury Nechaev. All rights reserved.
 //
 
-#import "AvatarView.h"
+#import "RoundedImageView.h"
 
-@implementation AvatarView
+@implementation RoundedImageView
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -15,6 +15,7 @@
 #import "TweetCell.h"
 #import "HVImageBank.h"
 #import "SendTweetVC.h"
+#import "ImageViewerController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define USE_SIZE_CACHE 1
@@ -164,6 +165,8 @@ typedef void (^HVErrorBlock)(NSError *error);
                 TweetCell *tweetCell = (TweetCell *)cell;
                 tweetCell.tweetTextView.attributedText = [weakSelf tweetStringFromNode:node];
                 tweetCell.usernameLabel.attributedText = [weakSelf userNameStringFromNode:node];
+                [tweetCell.answerButton setTag:indexPath.row];
+                [tweetCell.tweetImageView setTag:indexPath.row];
                 
                 [tweetCell.repostButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.retweetCount]
                                         forState:UIControlStateNormal];
@@ -187,6 +190,11 @@ typedef void (^HVErrorBlock)(NSError *error);
                     }
                     NSString *tweetImagePath = photoMedia.mediaUrl;
                     if (tweetImagePath.length) {
+                        [tweetCell.tweetImageView setUserInteractionEnabled:YES];
+                        if (![tweetCell.tweetImageView gestureRecognizers]) {
+                            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(imageTap:)];
+                            [tweetCell.tweetImageView addGestureRecognizer:singleTap];
+                        }
                         [[HVImageBank sharedInstance]
                          loadImageWithURL:[NSURL URLWithString:[tweetImagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
                          completion:^(UIImage *image, NSError *error) {
@@ -218,6 +226,10 @@ typedef void (^HVErrorBlock)(NSError *error);
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil, nil] show];
     };
+}
+
+- (void) imageTap:(UITapGestureRecognizer *)recognizer {
+    [self performSegueWithIdentifier:@"showImageViewer" sender:recognizer.view];
 }
 
 - (void) addAndRefreshDataWithNodeArray:(NSArray *)nodeArray {
@@ -274,13 +286,19 @@ typedef void (^HVErrorBlock)(NSError *error);
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIView *)sender {
     
     if ([segue.identifier isEqualToString:@"replyTweet"]) {
         SendTweetVC *stvc = [segue destinationViewController];
         HVDataNode *node = self.dataArray[sender.tag];
         stvc.replyToTweet = node.tweet;
         stvc.currentAccount = self.currentAccount;
+    }
+    
+    if ([segue.identifier isEqualToString:@"showImageViewer"]) {
+        UIImageView *imageSender = (UIImageView *) sender;
+        ImageViewerController *ivc = [segue destinationViewController];
+        ivc.thumbImage = imageSender.image;
     }
     
     // Get the new view controller using [segue destinationViewController].
