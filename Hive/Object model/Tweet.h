@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class User;
+@class Media;
 
 @interface Tweet : NSObject
 @property (nonatomic, strong) NSDate *createdAt;
@@ -20,6 +21,8 @@
 @property (nonatomic, assign) NSInteger retweetCount;
 @property (nonatomic, assign) NSInteger favoriteCount;
 @property (nonatomic, strong) NSString *lang;
-@property (nonatomic, strong) NSString *imageUrl;
 @property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSArray *media;
+
+- (BOOL) hasPhotoMedia;
 @end

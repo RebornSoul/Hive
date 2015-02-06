@@ -7,7 +7,17 @@
 //
 
 #import "Tweet.h"
+#import "Media.h"
 
 @implementation Tweet
+
+- (BOOL) hasPhotoMedia {
+    for (Media *media in self.media) {
+        if ([media.type isEqualToString:@"photo"]) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 @end

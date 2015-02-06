@@ -11,6 +11,7 @@
 #import "DumpMapper.h"
 #import "Tweet.h"
 #import "User.h"
+#import "Media.h"
 #import "TweetCell.h"
 #import "HVImageBank.h"
 #import "SendTweetVC.h"
@@ -169,6 +170,23 @@ typedef void (^HVErrorBlock)(NSError *error);
                  completion:^(UIImage *image, NSError *error) {
                      tweetCell.userpicImageView.image = image;
                 }];
+                if (node.tweet.media) {
+                    Media *photoMedia = nil;
+                    for (Media *media in node.tweet.media) {
+                        if ([media.type isEqualToString:@"photo"]) {
+                            photoMedia = media;
+                        }
+                    }
+                    NSString *tweetImagePath = photoMedia.mediaUrl;
+                    if (tweetImagePath.length) {
+                        [[HVImageBank sharedInstance]
+                         loadImageWithURL:[NSURL URLWithString:[tweetImagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
+                         completion:^(UIImage *image, NSError *error) {
+                             tweetCell.tweetImageView.image = image;
+                         }];
+                    }
+                }
+
             }
                 break;
             
@@ -335,6 +353,11 @@ typedef void (^HVErrorBlock)(NSError *error);
         HVDataNode *lastNode = [self lastTweetNodeFromArray:self.dataArray];
         NSLog(@"Last id: %@", lastNode.tweet.idStr);
         [self loadTweetsMaxId:lastNode.tweet.idStr];
+    }
+    
+    if (node.nodeType == kTweetTableCellTypeNormal) {
+        TweetCell *_cell = (TweetCell *) cell;
+        _cell.bottomTextViewConstraint.constant = [node.tweet hasPhotoMedia] ? [TweetCell defaultImageHeight] : 0;
     }
 }
 

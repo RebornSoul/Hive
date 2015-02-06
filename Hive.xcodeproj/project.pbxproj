@@ -45,6 +45,7 @@
 		061E17D21A84FF8F00F33AC5 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17CC1A84FF8F00F33AC5 /* reply.png */; };
 		061E17D31A84FF8F00F33AC5 /* reply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17CD1A84FF8F00F33AC5 /* reply@2x.png */; };
 		061E17D41A84FF8F00F33AC5 /* reply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17CE1A84FF8F00F33AC5 /* reply@3x.png */; };
+		061E17D71A85068800F33AC5 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E17D61A85068800F33AC5 /* Media.m */; };
 		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
 		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
 		066DD7D61A75298D003862CF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D51A75298D003862CF /* TweetCell.m */; };
@@ -131,6 +132,8 @@
 		061E17CC1A84FF8F00F33AC5 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
 		061E17CD1A84FF8F00F33AC5 /* reply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reply@2x.png"; sourceTree = "<group>"; };
 		061E17CE1A84FF8F00F33AC5 /* reply@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reply@3x.png"; sourceTree = "<group>"; };
+		061E17D51A85068800F33AC5 /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Media.h; path = "Object model/Media.h"; sourceTree = "<group>"; };
+		061E17D61A85068800F33AC5 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Media.m; path = "Object model/Media.m"; sourceTree = "<group>"; };
 		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		066DD7D11A752974003862CF /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTableViewController.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 		060E0C4D1A76D05000A95453 /* Object model */ = {
 			isa = PBXGroup;
 			children = (
+				061E17D51A85068800F33AC5 /* Media.h */,
+				061E17D61A85068800F33AC5 /* Media.m */,
 				060E0C4E1A76D06A00A95453 /* Tweet.h */,
 				060E0C4F1A76D06A00A95453 /* Tweet.m */,
 				060E0C511A76D07B00A95453 /* User.h */,
@@ -591,6 +596,7 @@
 				066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */,
 				066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */,
 				060E0C6F1A76E71200A95453 /* HVMappingResult.m in Sources */,
+				061E17D71A85068800F33AC5 /* Media.m in Sources */,
 				06FE37BC1A74F0CD006153C2 /* DataManager.m in Sources */,
 				060E0C5A1A76D2DC00A95453 /* HVMapperManager.m in Sources */,
 				060E0C641A76D98500A95453 /* HVObjectMapping.m in Sources */,

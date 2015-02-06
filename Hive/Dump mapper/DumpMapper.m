@@ -9,6 +9,7 @@
 #import "DumpMapper.h"
 #import "Tweet.h"
 #import "User.h"
+#import "Media.h"
 
 @implementation DumpMapper
 
@@ -70,6 +71,17 @@
     tw.retweeted = [node[@"retweeted"] boolValue];
     User *user = [DumpMapper mapUserNode:node[@"user"]];
     tw.user = user;
+    NSDictionary *entities = node[@"entities"];
+    NSArray *mediaNodes = entities[@"media"];
+    if (mediaNodes) {
+        NSMutableArray *temp = [NSMutableArray new];
+        for (id mediaNode in mediaNodes) {
+            Media *media = [DumpMapper mapMediaNode:mediaNode];
+            [temp addObject:media];
+        }
+        tw.media = [NSArray arrayWithArray:temp];
+    }
+
     return tw;
 }
 
@@ -81,6 +93,15 @@
     user.location = node[@"location"];
     user.profileImageUrl = node[@"profile_image_url"];
     return user;
+}
+
++ (Media *) mapMediaNode:(id)node {
+    Media *m = [Media new];
+    m.idStr = node[@"id_str"];
+    m.type = node[@"type"];
+    m.mediaUrl = node[@"media_url"];
+    m.displayUrl = node[@"display_url"];
+    return m;
 }
 
 @end

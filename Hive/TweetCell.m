@@ -23,9 +23,13 @@ const CGFloat HVTweetCellAvatarWidth = 40.0f;
 const CGFloat HVTweetCellAvatarHeight = 40.0f;
 const CGFloat HVTweetCellControlPanelHeight = 30.0f;
 
+const CGFloat HVTweetCellDefaultImageHeight = 200.0f;
+
+
 @implementation TweetCell
 
 + (CGFloat) heightForTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width {
+    
     CGFloat textViewWidth = width - HVTweetCellLeftPadding - HVTweetCellRightPadding;
     
     CGFloat calculatedHeight = HVTweetCellTopPadding +
@@ -35,7 +39,15 @@ const CGFloat HVTweetCellControlPanelHeight = 30.0f;
     HVTweetCellBottomPadding +
     HVTweetCellVerticalPaddings;
     
-    return MAX([[self class] minimumHeightShowingImage:tweet.imageUrl], calculatedHeight);
+    BOOL hasImageFlag = [tweet hasPhotoMedia];
+    
+    if (hasImageFlag) calculatedHeight += HVTweetCellDefaultImageHeight;
+    
+    return MAX([[self class] minimumHeightShowingImage:hasImageFlag], calculatedHeight);
+}
+
++ (CGFloat) defaultImageHeight {
+    return HVTweetCellDefaultImageHeight;
 }
 
 + (CGFloat) heightForTextFromTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width {
@@ -78,7 +90,7 @@ const CGFloat HVTweetCellControlPanelHeight = 30.0f;
 - (void)awakeFromNib {
     
     [super awakeFromNib];
-    
+
     self.tweetTextView.textContainerInset = UIEdgeInsetsZero;
     self.tweetTextView.textContainer.lineFragmentPadding = 0;
     [self.subbgView setImage:[[UIImage imageNamed:@"viewbg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 4, 4)]];

@@ -443,7 +443,7 @@
                                                     </state>
                                                 </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goe-vB-ygl">
-                                                    <rect key="frame" x="64" y="42" width="295" height="74"/>
+                                                    <rect key="frame" x="64" y="42" width="295" height="75"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>
@@ -457,15 +457,19 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image"/>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="gJS-TJ-z2J" firstAttribute="top" secondItem="SuR-la-CaU" secondAttribute="top" constant="13" id="4hI-r3-1CC"/>
+                                                <constraint firstItem="qKP-su-f27" firstAttribute="top" secondItem="goe-vB-ygl" secondAttribute="bottom" id="5Ms-Ie-FgE"/>
                                                 <constraint firstItem="7oj-3M-Zak" firstAttribute="top" secondItem="SuR-la-CaU" secondAttribute="top" constant="13" id="5fO-jl-YMA"/>
                                                 <constraint firstItem="goe-vB-ygl" firstAttribute="leading" secondItem="SuR-la-CaU" secondAttribute="leading" constant="64" id="6rh-hq-1OR"/>
                                                 <constraint firstAttribute="bottom" secondItem="qKP-su-f27" secondAttribute="bottom" constant="9" id="7hN-sL-UF4"/>
+                                                <constraint firstItem="qKP-su-f27" firstAttribute="top" secondItem="HG9-ae-Awk" secondAttribute="bottom" id="8wa-2U-2gX"/>
                                                 <constraint firstItem="cum-6d-goI" firstAttribute="top" secondItem="SuR-la-CaU" secondAttribute="top" constant="5" id="8yc-Jb-bJS"/>
                                                 <constraint firstItem="CSy-sW-AWK" firstAttribute="height" secondItem="qKP-su-f27" secondAttribute="height" id="Ace-OC-Lkw"/>
+                                                <constraint firstItem="HG9-ae-Awk" firstAttribute="top" secondItem="goe-vB-ygl" secondAttribute="bottom" id="BSe-jw-nmF"/>
                                                 <constraint firstAttribute="bottom" secondItem="cum-6d-goI" secondAttribute="bottom" constant="5" id="Bz4-wp-4Xq"/>
                                                 <constraint firstItem="ZTt-bn-tFc" firstAttribute="leading" secondItem="DEl-tw-v5F" secondAttribute="trailing" constant="8" id="EOp-Y5-5hR"/>
                                                 <constraint firstItem="CSy-sW-AWK" firstAttribute="width" secondItem="qKP-su-f27" secondAttribute="width" id="Fc6-hR-0Mp"/>
@@ -473,6 +477,7 @@
                                                 <constraint firstItem="CSy-sW-AWK" firstAttribute="width" secondItem="RRY-1Q-4D3" secondAttribute="width" id="KXN-NQ-Gah"/>
                                                 <constraint firstItem="ZTt-bn-tFc" firstAttribute="top" secondItem="SuR-la-CaU" secondAttribute="top" constant="13" id="Oes-7i-HKl"/>
                                                 <constraint firstAttribute="trailing" secondItem="cum-6d-goI" secondAttribute="trailing" constant="8" id="R2D-i2-ni8"/>
+                                                <constraint firstItem="HG9-ae-Awk" firstAttribute="centerX" secondItem="goe-vB-ygl" secondAttribute="centerX" id="RU1-1r-aAd"/>
                                                 <constraint firstItem="CSy-sW-AWK" firstAttribute="height" secondItem="RRY-1Q-4D3" secondAttribute="height" id="RV0-eM-k0X"/>
                                                 <constraint firstItem="qKP-su-f27" firstAttribute="leading" secondItem="CSy-sW-AWK" secondAttribute="trailing" constant="16" id="UXW-Gd-IrK"/>
                                                 <constraint firstAttribute="trailing" secondItem="goe-vB-ygl" secondAttribute="trailing" constant="16" id="Ugo-yA-BmH"/>
@@ -482,21 +487,23 @@
                                                 <constraint firstItem="DEl-tw-v5F" firstAttribute="leading" secondItem="SuR-la-CaU" secondAttribute="leadingMargin" constant="8" id="a9X-oJ-4Dj"/>
                                                 <constraint firstItem="cum-6d-goI" firstAttribute="leading" secondItem="SuR-la-CaU" secondAttribute="leading" constant="8" id="aAL-2M-B6N"/>
                                                 <constraint firstAttribute="trailing" secondItem="gJS-TJ-z2J" secondAttribute="trailing" constant="4" id="byE-ir-pn9"/>
+                                                <constraint firstItem="HG9-ae-Awk" firstAttribute="width" secondItem="goe-vB-ygl" secondAttribute="width" id="dOT-tt-YF4"/>
                                                 <constraint firstItem="CSy-sW-AWK" firstAttribute="leading" secondItem="RRY-1Q-4D3" secondAttribute="trailing" constant="16" id="iBd-ve-Qdk"/>
                                                 <constraint firstItem="DEl-tw-v5F" firstAttribute="top" secondItem="SuR-la-CaU" secondAttribute="topMargin" constant="5" id="lt4-Jt-rpp"/>
                                                 <constraint firstItem="7oj-3M-Zak" firstAttribute="leading" secondItem="ZTt-bn-tFc" secondAttribute="trailing" id="ogT-3P-tg1"/>
                                                 <constraint firstAttribute="trailing" secondItem="qKP-su-f27" secondAttribute="trailing" constant="31" id="tYi-88-njG"/>
-                                                <constraint firstAttribute="bottom" secondItem="goe-vB-ygl" secondAttribute="bottom" constant="40" id="wg0-DS-5c1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="answerButton" destination="RRY-1Q-4D3" id="2QB-eM-l9e"/>
+                                            <outlet property="bottomTextViewConstraint" destination="5Ms-Ie-FgE" id="g4L-g3-8jl"/>
                                             <outlet property="dateRibbonImage" destination="gJS-TJ-z2J" id="9qK-Yn-IAR"/>
                                             <outlet property="favButton" destination="qKP-su-f27" id="ZKN-tp-SjV"/>
                                             <outlet property="repostButton" destination="CSy-sW-AWK" id="IJy-q7-fpq"/>
                                             <outlet property="subbgView" destination="cum-6d-goI" id="0oA-iX-k8t"/>
                                             <outlet property="timestampLabel" destination="7oj-3M-Zak" id="4PA-iD-JfI"/>
+                                            <outlet property="tweetImageView" destination="HG9-ae-Awk" id="MyA-49-Mr3"/>
                                             <outlet property="tweetTextView" destination="goe-vB-ygl" id="M8x-Dp-OGG"/>
                                             <outlet property="usernameLabel" destination="ZTt-bn-tFc" id="wNN-SQ-tbc"/>
                                             <outlet property="userpicImageView" destination="DEl-tw-v5F" id="JKl-3i-xfj"/>
