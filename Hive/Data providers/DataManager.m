@@ -14,8 +14,59 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
 #define TIMELINE_PATH @"https://api.twitter.com/1.1/statuses/home_timeline.json"
 #define CURRENT_USER_PATH @"https://api.twitter.com/1.1/account/verify_credentials.json"
 #define STATUS_PATH @"https://api.twitter.com/1.1/statuses/update.json"
+#define RETWEET_PATH @"https://api.twitter.com/1.1/statuses/retweet/%@.json"
+#define FAV_ADD @"https://api.twitter.com/1.1/favorites/create.json"
+#define FAV_DEL @"https://api.twitter.com/1.1/favorites/destroy.json"
 
 @implementation DataManager
+
++ (void) destroyFavoriteId:(NSString *)tweetId
+                 inAccount:(ACAccount *)account
+            withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                   failure:(void(^)(NSError *error))failureBlock {
+    NSAssert(tweetId, @"Tweet id is onmitted.");
+    NSURL *url = [NSURL URLWithString:FAV_DEL];
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    [params setObject:tweetId forKey:@"id"];
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodPOST
+                                                      URL:url
+                                               parameters:params];
+    [request setAccount:account];
+    [DataManager performRequest:request withURL:url withCompletion:completionBlock failure:failureBlock];
+}
+
++ (void) postFavoriteId:(NSString *)tweetId
+              inAccount:(ACAccount *)account
+         withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                failure:(void(^)(NSError *error))failureBlock {
+    NSAssert(tweetId, @"Tweet id is onmitted.");
+    NSURL *url = [NSURL URLWithString:FAV_ADD];
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    [params setObject:tweetId forKey:@"id"];
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodPOST
+                                                      URL:url
+                                               parameters:params];
+    [request setAccount:account];
+    [DataManager performRequest:request withURL:url withCompletion:completionBlock failure:failureBlock];
+}
+
++ (void) postRetweetForId:(NSString *)tweetId
+                inAccount:(ACAccount *)account
+           withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                  failure:(void(^)(NSError *error))failureBlock {
+    NSAssert(tweetId, @"Tweet id is onmitted.");
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:RETWEET_PATH, tweetId]];
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    [params setObject:tweetId forKey:@"id"];
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodPOST
+                                                      URL:url
+                                               parameters:params];
+    [request setAccount:account];
+    [DataManager performRequest:request withURL:url withCompletion:completionBlock failure:failureBlock];
+}
 
 + (void) postStatusUpdate:(NSString *)status
                 inAccount:(ACAccount *)account
