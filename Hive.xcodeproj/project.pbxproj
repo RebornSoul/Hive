@@ -54,6 +54,12 @@
 		066DD7DF1A7529DA003862CF /* PaginationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7DE1A7529DA003862CF /* PaginationCell.m */; };
 		06AC40141A855E3400800860 /* ImageViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AC40131A855E3400800860 /* ImageViewerController.m */; };
 		06AC40181A86783500800860 /* OutlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AC40171A86783500800860 /* OutlineButton.m */; };
+		06AC401F1A86910400800860 /* megaphone_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AC40191A86910400800860 /* megaphone_on.png */; };
+		06AC40201A86910400800860 /* megaphone_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AC401A1A86910400800860 /* megaphone_on@2x.png */; };
+		06AC40211A86910400800860 /* megaphone_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AC401B1A86910400800860 /* megaphone_on@3x.png */; };
+		06AC40221A86910400800860 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AC401C1A86910400800860 /* star_on.png */; };
+		06AC40231A86910400800860 /* star_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AC401D1A86910400800860 /* star_on@2x.png */; };
+		06AC40241A86910400800860 /* star_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06AC401E1A86910400800860 /* star_on@3x.png */; };
 		06FE37831A6E9567006153C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37821A6E9567006153C2 /* main.m */; };
 		06FE37861A6E9567006153C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37851A6E9567006153C2 /* AppDelegate.m */; };
 		06FE37891A6E9567006153C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37881A6E9567006153C2 /* ViewController.m */; };
@@ -152,6 +158,12 @@
 		06AC40131A855E3400800860 /* ImageViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewerController.m; sourceTree = "<group>"; };
 		06AC40161A86783500800860 /* OutlineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineButton.h; sourceTree = "<group>"; };
 		06AC40171A86783500800860 /* OutlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineButton.m; sourceTree = "<group>"; };
+		06AC40191A86910400800860 /* megaphone_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = megaphone_on.png; sourceTree = "<group>"; };
+		06AC401A1A86910400800860 /* megaphone_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "megaphone_on@2x.png"; sourceTree = "<group>"; };
+		06AC401B1A86910400800860 /* megaphone_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "megaphone_on@3x.png"; sourceTree = "<group>"; };
+		06AC401C1A86910400800860 /* star_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_on.png; sourceTree = "<group>"; };
+		06AC401D1A86910400800860 /* star_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_on@2x.png"; sourceTree = "<group>"; };
+		06AC401E1A86910400800860 /* star_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_on@3x.png"; sourceTree = "<group>"; };
 		06FE377D1A6E9567006153C2 /* Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FE37811A6E9567006153C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06FE37821A6E9567006153C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -281,6 +293,12 @@
 		061E17771A814EEE00F33AC5 /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				06AC40191A86910400800860 /* megaphone_on.png */,
+				06AC401A1A86910400800860 /* megaphone_on@2x.png */,
+				06AC401B1A86910400800860 /* megaphone_on@3x.png */,
+				06AC401C1A86910400800860 /* star_on.png */,
+				06AC401D1A86910400800860 /* star_on@2x.png */,
+				06AC401E1A86910400800860 /* star_on@3x.png */,
 				061E17C91A84FF8E00F33AC5 /* close.png */,
 				061E17CA1A84FF8F00F33AC5 /* close@2x.png */,
 				061E17CB1A84FF8F00F33AC5 /* close@3x.png */,
@@ -574,19 +592,24 @@
 				06FE37B71A6EB87A006153C2 /* check@2x.png in Resources */,
 				06FE378C1A6E9567006153C2 /* Main.storyboard in Resources */,
 				061E17C81A84E63300F33AC5 /* megaphone@3x.png in Resources */,
+				06AC401F1A86910400800860 /* megaphone_on.png in Resources */,
 				061E17B41A84E0BA00F33AC5 /* photo.png in Resources */,
 				061E17C11A84E44000F33AC5 /* star@2x.png in Resources */,
 				06FE37B81A6EB87A006153C2 /* check@3x.png in Resources */,
 				061E17B61A84E0BA00F33AC5 /* photo@3x.png in Resources */,
 				061E17B11A84E0BA00F33AC5 /* location.png in Resources */,
+				06AC40231A86910400800860 /* star_on@2x.png in Resources */,
 				061E17A31A84D78200F33AC5 /* viewbg.png in Resources */,
 				061E17B31A84E0BA00F33AC5 /* location@3x.png in Resources */,
 				06FE37911A6E9567006153C2 /* LaunchScreen.xib in Resources */,
 				061E17CF1A84FF8F00F33AC5 /* close.png in Resources */,
+				06AC40201A86910400800860 /* megaphone_on@2x.png in Resources */,
 				06FE37B61A6EB87A006153C2 /* check.png in Resources */,
 				061E17C21A84E44000F33AC5 /* star@3x.png in Resources */,
 				06FE378E1A6E9567006153C2 /* Images.xcassets in Resources */,
 				061E17D01A84FF8F00F33AC5 /* close@2x.png in Resources */,
+				06AC40211A86910400800860 /* megaphone_on@3x.png in Resources */,
+				06AC40221A86910400800860 /* star_on.png in Resources */,
 				061E17D31A84FF8F00F33AC5 /* reply@2x.png in Resources */,
 				061E17D41A84FF8F00F33AC5 /* reply@3x.png in Resources */,
 				061E17C61A84E63300F33AC5 /* megaphone.png in Resources */,
@@ -597,6 +620,7 @@
 				061E179C1A842BEB00F33AC5 /* ribbon@2x.png in Resources */,
 				061E17C01A84E44000F33AC5 /* star.png in Resources */,
 				061E17B51A84E0BA00F33AC5 /* photo@2x.png in Resources */,
+				06AC40241A86910400800860 /* star_on@3x.png in Resources */,
 				061E17B21A84E0BA00F33AC5 /* location@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

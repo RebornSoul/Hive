@@ -184,6 +184,10 @@ typedef void (^HVErrorBlock)(NSError *error);
                 [tweetCell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount]
                                         forState:UIControlStateNormal];
                 
+                [tweetCell.repostButton setImage:[UIImage imageNamed:node.tweet.retweeted ? @"megaphone_on.png" : @"megaphone.png"] forState:UIControlStateNormal];
+                [tweetCell.favButton setImage:[UIImage imageNamed:node.tweet.favorited ? @"star_on.png" : @"star.png"] forState:UIControlStateNormal];
+
+                
                 [tweetCell.timestampLabel setText:[weakSelf diffStringFromDate:node.tweet.createdAt toDate:[NSDate date]]];
                 
                 NSString *imagePath = node.tweet.user.profileImageUrl;
@@ -449,6 +453,7 @@ typedef void (^HVErrorBlock)(NSError *error);
             dispatch_async(dispatch_get_main_queue(), ^{
                 if ([[self.tableView visibleCells] containsObject:cell]) {
                     [cell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount] forState:UIControlStateNormal];
+                    [cell.favButton setImage:[UIImage imageNamed:@"star_on.png"] forState:UIControlStateNormal];
                 }
             });
         } failure:self.errorBlock];
@@ -460,6 +465,7 @@ typedef void (^HVErrorBlock)(NSError *error);
             dispatch_async(dispatch_get_main_queue(), ^{
                 if ([[self.tableView visibleCells] containsObject:cell]) {
                     [cell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount] forState:UIControlStateNormal];
+                    [cell.favButton setImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
                 }
             });
         } failure:self.errorBlock];
@@ -533,6 +539,7 @@ typedef void (^HVErrorBlock)(NSError *error);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if ([[self.tableView visibleCells] containsObject:cell]) {
                         [cell.repostButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.retweetCount] forState:UIControlStateNormal];
+                        [cell.repostButton setImage:[UIImage imageNamed:@"megaphone_on.png"] forState:UIControlStateNormal];
                     }
                 });
             } failure:self.errorBlock];
