@@ -24,6 +24,11 @@
 
 #define LOADER_CELL_HEIGHT 44.0f
 
+typedef NS_ENUM(NSUInteger, kTweetAction) {
+    kTweetActionRetweet = 0,
+    kTweetActionQuote = 1
+};
+
 typedef NS_ENUM(NSUInteger, kTweetTableCellType) {
     kTweetTableCellTypeNormal = 1,
     kTweetTableCellTypeLoader = 2,
@@ -49,7 +54,7 @@ typedef void (^HVConfigureCellBlock)(UITableViewCell *cell, HVDataNode *dataNode
 typedef void (^HVNewDataBlock)(NSData *responseData);
 typedef void (^HVErrorBlock)(NSError *error);
 
-@interface TwitterTableViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TwitterTableViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
@@ -70,6 +75,9 @@ typedef void (^HVErrorBlock)(NSError *error);
 #if USE_CELL_ANIMATION
 @property (nonatomic, strong) NSMutableSet *popupAnimationSet;
 #endif
+
+- (IBAction)didPressRetweetButton:(UIButton *)sender;
+- (IBAction)didPressFavoriteButton:(UIButton *)sender;
 
 @end
 
@@ -165,8 +173,11 @@ typedef void (^HVErrorBlock)(NSError *error);
                 TweetCell *tweetCell = (TweetCell *)cell;
                 tweetCell.tweetTextView.attributedText = [weakSelf tweetStringFromNode:node];
                 tweetCell.usernameLabel.attributedText = [weakSelf userNameStringFromNode:node];
+                
                 [tweetCell.answerButton setTag:indexPath.row];
                 [tweetCell.tweetImageView setTag:indexPath.row];
+                [tweetCell.favButton setTag:indexPath.row];
+                [tweetCell.repostButton setTag:indexPath.row];
                 
                 [tweetCell.repostButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.retweetCount]
                                         forState:UIControlStateNormal];
@@ -417,7 +428,47 @@ typedef void (^HVErrorBlock)(NSError *error);
     }];
 }
 
+#pragma mark - IBActions
+
+- (IBAction)didPressRetweetButton:(UIButton *)sender {
+    HVDataNode *node = self.dataArray[sender.tag];
+    if (!node.tweet.retweeted) {
+        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Retweet",@"Quote", nil];
+        action.tag = sender.tag;
+        [action showInView:self.view];
+    }
+}
+
+- (IBAction)didPressFavoriteButton:(UIButton *)sender {
+    HVDataNode *node = self.dataArray[sender.tag];
+    if (!node.tweet.favorited) {
+        [DataManager postFavoriteId:node.tweet.idStr inAccount:self.currentAccount withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
+            node.tweet.favoriteCount += 1;
+            node.tweet.favorited = YES;
+            TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([[self.tableView visibleCells] containsObject:cell]) {
+                    [cell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount] forState:UIControlStateNormal];
+                }
+            });
+        } failure:self.errorBlock];
+    } else {
+        [DataManager destroyFavoriteId:node.tweet.idStr inAccount:self.currentAccount withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
+            node.tweet.favoriteCount -= 1;
+            node.tweet.favorited = NO;
+            TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([[self.tableView visibleCells] containsObject:cell]) {
+                    [cell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount] forState:UIControlStateNormal];
+                }
+            });
+        } failure:self.errorBlock];
+
+    }
+}
+
 #pragma mark - custom methods
+
 
 - (NSString *)cellIdentifierForCellType:(kTweetTableCellType)cellType {
     switch (cellType) {
@@ -466,6 +517,32 @@ typedef void (^HVErrorBlock)(NSError *error);
                     if (seconds != NSNotFound) return @"now";
     }
     return @"Error";
+}
+
+#pragma mark - UIActionSheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    HVDataNode *node = self.dataArray[actionSheet.tag];
+    switch (buttonIndex) {
+        case kTweetActionRetweet: // retweet
+        {
+            [DataManager postRetweetForId:node.tweet.idStr inAccount:self.currentAccount withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
+                node.tweet.retweetCount += 1;
+                node.tweet.retweeted = YES;
+                TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([[self.tableView visibleCells] containsObject:cell]) {
+                        [cell.repostButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.retweetCount] forState:UIControlStateNormal];
+                    }
+                });
+            } failure:self.errorBlock];
+        }
+            break;
+        case kTweetActionQuote: // quote
+            break;
+        default:
+            break;
+    }
 }
 
 @end

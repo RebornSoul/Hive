@@ -45,4 +45,9 @@
                  inAccount:(ACAccount *)account
             withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
                    failure:(void(^)(NSError *error))failureBlock;
+
++ (void) postRetweetForId:(NSString *)tweetId
+                inAccount:(ACAccount *)account
+           withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                  failure:(void(^)(NSError *error))failureBlock;
 @end
