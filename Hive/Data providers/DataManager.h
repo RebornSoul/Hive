@@ -12,6 +12,12 @@
 
 @interface DataManager : NSObject
 
++ (void) postStatusUpdate:(NSString *)status
+                inAccount:(ACAccount *)account
+         inReplyToTweetId:(NSString *)tweetId
+           withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                  failure:(void(^)(NSError *error))failureBlock;
+
 + (void) getCurrentUserInAccount:(ACAccount *)account
                   withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
                          failure:(void(^)(NSError *error))failureBlock;

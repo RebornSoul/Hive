@@ -53,6 +53,7 @@
 		066DD7DC1A7529BF003862CF /* UserSurveyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7DB1A7529BF003862CF /* UserSurveyCell.m */; };
 		066DD7DF1A7529DA003862CF /* PaginationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7DE1A7529DA003862CF /* PaginationCell.m */; };
 		06AC40141A855E3400800860 /* ImageViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AC40131A855E3400800860 /* ImageViewerController.m */; };
+		06AC40181A86783500800860 /* OutlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AC40171A86783500800860 /* OutlineButton.m */; };
 		06FE37831A6E9567006153C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37821A6E9567006153C2 /* main.m */; };
 		06FE37861A6E9567006153C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37851A6E9567006153C2 /* AppDelegate.m */; };
 		06FE37891A6E9567006153C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE37881A6E9567006153C2 /* ViewController.m */; };
@@ -149,6 +150,8 @@
 		066DD7DE1A7529DA003862CF /* PaginationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaginationCell.m; sourceTree = "<group>"; };
 		06AC40121A855E3400800860 /* ImageViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewerController.h; sourceTree = "<group>"; };
 		06AC40131A855E3400800860 /* ImageViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewerController.m; sourceTree = "<group>"; };
+		06AC40161A86783500800860 /* OutlineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineButton.h; sourceTree = "<group>"; };
+		06AC40171A86783500800860 /* OutlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineButton.m; sourceTree = "<group>"; };
 		06FE377D1A6E9567006153C2 /* Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FE37811A6E9567006153C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06FE37821A6E9567006153C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -370,6 +373,15 @@
 			name = "Image viewer";
 			sourceTree = "<group>";
 		};
+		06AC40151A86781A00800860 /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				06AC40161A86783500800860 /* OutlineButton.h */,
+				06AC40171A86783500800860 /* OutlineButton.m */,
+			);
+			name = "Custom UI";
+			sourceTree = "<group>";
+		};
 		06FE37741A6E9567006153C2 = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +405,7 @@
 		06FE377F1A6E9567006153C2 /* Hive */ = {
 			isa = PBXGroup;
 			children = (
+				06AC40151A86781A00800860 /* Custom UI */,
 				060E0C461A76CECD00A95453 /* Parser */,
 				06584FAC1A76BCAA001974AB /* View controllers */,
 				06FE37B91A74F084006153C2 /* Data managers */,
@@ -626,6 +639,7 @@
 				060E0C531A76D07B00A95453 /* User.m in Sources */,
 				060E0C5D1A76D6B500A95453 /* HVMappingRoute.m in Sources */,
 				060E0C601A76D73800A95453 /* HVMappingOperation.m in Sources */,
+				06AC40181A86783500800860 /* OutlineButton.m in Sources */,
 				06FE37B01A6EB230006153C2 /* AccountCell.m in Sources */,
 				06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */,
 				061E176C1A78188700F33AC5 /* DumpMapper.m in Sources */,

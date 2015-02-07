@@ -172,6 +172,7 @@
                                     <segment title="Table"/>
                                     <segment title="Collection"/>
                                 </segments>
+                                <color key="tintColor" red="0.69120885970744683" green="0.49448433175300022" blue="0.39624664122023556" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -212,7 +213,7 @@
                                     <constraint firstAttribute="width" constant="40" id="y4v-tB-fhV"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic2-m2-uL4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic2-m2-uL4">
                                 <rect key="frame" x="58" y="41" width="255" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ggm-Bt-TBy"/>
@@ -221,16 +222,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UY-RG-DUO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UY-RG-DUO" customClass="OutlineButton">
                                 <rect key="frame" x="230" y="8" width="83" height="30"/>
-                                <color key="backgroundColor" red="0.86841985330000004" green="1" blue="0.76654617130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="83" id="7aa-Sz-NTv"/>
                                     <constraint firstAttribute="height" constant="30" id="tRm-xd-s4F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="Tweet">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" red="0.34509803921568627" green="0.17254901960784313" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -247,9 +248,8 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text here" translatesAutoresizingMaskIntoConstraints="NO" id="bcn-mk-kkG">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcn-mk-kkG">
                                 <rect key="frame" x="0.0" y="90" width="320" height="434"/>
-                                <color key="backgroundColor" red="1" green="0.71593769510000005" blue="0.80029760429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
@@ -270,7 +270,7 @@
                                 </items>
                                 <color key="tintColor" red="0.34341077302631584" green="0.17407833763187847" blue="0.074727781180908934" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98O-QU-8Me">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98O-QU-8Me">
                                 <rect key="frame" x="58" y="62" width="255" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="56h-n2-kmx"/>
@@ -321,6 +321,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="avatarView" destination="F8k-Fq-j6e" id="fZV-6V-jkQ"/>
+                        <outlet property="bottomConstraint" destination="avs-zF-G0E" id="J5S-UU-5d6"/>
                         <outlet property="closeButton" destination="JN4-cL-pHi" id="3ZP-Hw-G3f"/>
                         <outlet property="controlsPanel" destination="7PJ-CP-MEh" id="vq5-Uj-eqf"/>
                         <outlet property="counterLabel" destination="397-Us-eOI" id="DeD-zR-b6l"/>

@@ -11,10 +11,31 @@
 
 static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
 
-#define TWITTER_PATH @"https://api.twitter.com/1.1/statuses/home_timeline.json"
+#define TIMELINE_PATH @"https://api.twitter.com/1.1/statuses/home_timeline.json"
 #define CURRENT_USER_PATH @"https://api.twitter.com/1.1/account/verify_credentials.json"
+#define STATUS_PATH @"https://api.twitter.com/1.1/statuses/update.json"
 
 @implementation DataManager
+
++ (void) postStatusUpdate:(NSString *)status
+                inAccount:(ACAccount *)account
+         inReplyToTweetId:(NSString *)tweetId
+           withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
+                  failure:(void(^)(NSError *error))failureBlock {
+    NSAssert(status, @"Status is onmitted.");
+    NSURL *url = [NSURL URLWithString:STATUS_PATH];
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    [params setObject:status forKey:@"status"];
+    if (tweetId.length) {
+        [params setObject:tweetId forKey:@"in_reply_to_status_id"];
+    }
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodPOST
+                                                      URL:url
+                                               parameters:params];
+    [request setAccount:account];
+    [DataManager performRequest:request withURL:url withCompletion:completionBlock failure:failureBlock];
+}
 
 + (void) retrieveAccountFeed:(ACAccount *)account
                      sinceId:(NSString *)sinceId
@@ -62,7 +83,7 @@ static NSString * const HVDataManagerErrorDomain = @"com.DataManager.Error";
               withCompletion:(void(^)(NSData *responseData, NSHTTPURLResponse *urlResponse))completionBlock
                      failure:(void(^)(NSError *error))failureBlock {
     
-    NSURL *url = [NSURL URLWithString:TWITTER_PATH];
+    NSURL *url = [NSURL URLWithString:TIMELINE_PATH];
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
                                             requestMethod:SLRequestMethodGET
                                                       URL:url
