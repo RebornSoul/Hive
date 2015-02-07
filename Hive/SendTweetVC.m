@@ -13,9 +13,11 @@
 #import "DumpMapper.h"
 #import "DataManager.h"
 
+#define MAX_CHAR_COUNT 140
+
 typedef void (^HVErrorBlock)(NSError *error);
 
-@interface SendTweetVC ()
+@interface SendTweetVC () <UITextViewDelegate>
 @property (nonatomic, weak) IBOutlet UIImageView *avatarView;
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *screennameLabel;
@@ -84,6 +86,21 @@ typedef void (^HVErrorBlock)(NSError *error);
 
 - (IBAction)didPressSendButton:(id)sender {
     
+}
+
+#pragma mark - TextView delegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+    NSInteger count = MAX_CHAR_COUNT - textView.text.length;
+    NSLog(@"%li", (long)count);
+    self.counterLabel.text = [NSString stringWithFormat:@"%ld", (long)count];
+    if (count < 0) {
+        self.counterLabel.textColor = [UIColor redColor];
+    } else {
+        self.counterLabel.textColor = [UIColor lightGrayColor];
+    }
+    
+    textView.typingAttributes = @{NSForegroundColorAttributeName : count <= 0 ? [UIColor redColor] : [UIColor blackColor]};
 }
 
 @end

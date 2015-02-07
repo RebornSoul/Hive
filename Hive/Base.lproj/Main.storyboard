@@ -252,6 +252,9 @@
                                 <color key="backgroundColor" red="1" green="0.71593769510000005" blue="0.80029760429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="RAw-1q-F8v" id="NFQ-GG-Y7y"/>
+                                </connections>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PJ-CP-MEh">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -361,6 +364,7 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-ae-Awk" userLabel="Tweet image" customClass="RoundedImageView">
                                                             <rect key="frame" x="0.0" y="4" width="295" height="19"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
