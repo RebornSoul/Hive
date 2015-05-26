@@ -11,6 +11,7 @@
 @class Media;
 
 @interface ImageViewerController : UIViewController
+@property (nonatomic, weak) UIView *senderViewForAnimation;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) Media *photoMedia;
 @property (nonatomic, strong) UIImage *thumbImage;

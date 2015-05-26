@@ -244,7 +244,10 @@ typedef void (^HVErrorBlock)(NSError *error);
 }
 
 - (void) imageTap:(UITapGestureRecognizer *)recognizer {
-    [self performSegueWithIdentifier:@"showImageViewer" sender:recognizer.view];
+	ImageViewerController *ivc = [[ImageViewerController alloc] init];
+	ivc.senderViewForAnimation = recognizer.view;
+	[self presentViewController:ivc animated:YES completion:nil];
+//    [self performSegueWithIdentifier:@"showImageViewer" sender:recognizer.view];
 }
 
 - (void) addAndRefreshDataWithNodeArray:(NSArray *)nodeArray {
@@ -313,6 +316,7 @@ typedef void (^HVErrorBlock)(NSError *error);
     if ([segue.identifier isEqualToString:@"showImageViewer"]) {
         UIImageView *imageSender = (UIImageView *) sender;
         ImageViewerController *ivc = [segue destinationViewController];
+		ivc.senderViewForAnimation = imageSender;
         ivc.thumbImage = imageSender.image;
     }
     

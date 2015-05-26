@@ -13,14 +13,29 @@
 @interface ImageViewerController () <UIScrollViewDelegate>
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) UIImageView *currentImageView;
+@property (nonatomic, weak) UIImage *scaleImage;
+@property (nonatomic, assign) CGRect senderViewOriginalFrame;
+@property (nonatomic, weak) UIWindow *applicationWindow;
+@property (nonatomic) float animationDuration;
 
 - (IBAction)didTouchScrollView:(id)sender;
 @end
 
 @implementation ImageViewerController
 
+- (id) init {
+	self = [super init];
+	if (self) {
+		_applicationWindow = [[[UIApplication sharedApplication] delegate] window];
+		_animationDuration = 0.28f;
+	}
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self performPresentAnimation];
     
     self.currentImageView = [[UIImageView alloc] init];
     
@@ -52,6 +67,75 @@
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView]|" options:0 metrics: 0 views:viewsDictionary]];
 #endif
     
+}
+
+- (UIImage*)rotateImageToCurrentOrientation:(UIImage*)image
+{
+	if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+	{
+		UIImageOrientation orientation = ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft) ?UIImageOrientationLeft : UIImageOrientationRight;
+		
+		UIImage *rotatedImage = [[UIImage alloc] initWithCGImage:image.CGImage
+														   scale:1.0
+													 orientation:orientation];
+		
+		image = rotatedImage;
+	}
+	
+	return image;
+}
+
+- (void)performPresentAnimation {
+	self.view.alpha = 0.0f;
+	
+	UIImage *imageFromView = _scaleImage ? _scaleImage : [self getImageFromView:_senderViewForAnimation];
+	imageFromView = [self rotateImageToCurrentOrientation:imageFromView];
+	
+	_senderViewOriginalFrame = [_senderViewForAnimation.superview convertRect:_senderViewForAnimation.frame toView:nil];
+	
+	CGRect screenBound = [[UIScreen mainScreen] bounds];
+	CGFloat screenWidth = screenBound.size.width;
+	CGFloat screenHeight = screenBound.size.height;
+	
+	UIView *fadeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+	fadeView.backgroundColor = [UIColor clearColor];
+	[_applicationWindow addSubview:fadeView];
+	
+	UIImageView *resizableImageView = [[UIImageView alloc] initWithImage:imageFromView];
+	resizableImageView.frame = _senderViewOriginalFrame;
+	resizableImageView.clipsToBounds = YES;
+	resizableImageView.contentMode = UIViewContentModeScaleAspectFill;
+	resizableImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
+	[_applicationWindow addSubview:resizableImageView];
+	_senderViewForAnimation.hidden = YES;
+	
+	void (^completion)() = ^() {
+		self.view.alpha = 1.0f;
+		resizableImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
+		[fadeView removeFromSuperview];
+		[resizableImageView removeFromSuperview];
+	};
+	
+	[UIView animateWithDuration:_animationDuration animations:^{
+		fadeView.backgroundColor = [UIColor blackColor];
+	} completion:nil];
+	
+	float scaleFactor = (imageFromView ? imageFromView.size.width : screenWidth) / screenWidth;
+	CGRect finalImageViewFrame = CGRectMake(0, (screenHeight/2)-((imageFromView.size.height / scaleFactor)/2), screenWidth, imageFromView.size.height / scaleFactor);
+	
+	[UIView animateWithDuration:_animationDuration animations:^{
+		resizableImageView.layer.frame = finalImageViewFrame;
+	} completion:^(BOOL finished) {
+		completion();
+	}];
+}
+
+- (UIImage*)getImageFromView:(UIView *)view {
+	UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 2);
+	[view.layer renderInContext:UIGraphicsGetCurrentContext()];
+	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return image;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -47,6 +47,7 @@
 		061E17D41A84FF8F00F33AC5 /* reply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17CE1A84FF8F00F33AC5 /* reply@3x.png */; };
 		061E17D71A85068800F33AC5 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E17D61A85068800F33AC5 /* Media.m */; };
 		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
+		065C14381B0635C100634EB4 /* ImageZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C14371B0635C100634EB4 /* ImageZoomView.m */; };
 		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
 		066DD7D61A75298D003862CF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D51A75298D003862CF /* TweetCell.m */; };
 		066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D81A75299B003862CF /* MoreToSeeCell.m */; };
@@ -144,6 +145,8 @@
 		061E17D61A85068800F33AC5 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Media.m; path = "Object model/Media.m"; sourceTree = "<group>"; };
 		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		065C14361B0635C100634EB4 /* ImageZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageZoomView.h; path = Source/ImageZoomView.h; sourceTree = "<group>"; };
+		065C14371B0635C100634EB4 /* ImageZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageZoomView.m; path = Source/ImageZoomView.m; sourceTree = "<group>"; };
 		066DD7D11A752974003862CF /* TwitterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTableViewController.h; sourceTree = "<group>"; };
 		066DD7D21A752974003862CF /* TwitterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterTableViewController.m; sourceTree = "<group>"; };
 		066DD7D41A75298D003862CF /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 			children = (
 				06AC40121A855E3400800860 /* ImageViewerController.h */,
 				06AC40131A855E3400800860 /* ImageViewerController.m */,
+				065C14361B0635C100634EB4 /* ImageZoomView.h */,
+				065C14371B0635C100634EB4 /* ImageZoomView.m */,
 			);
 			name = "Image viewer";
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				TargetAttributes = {
 					06FE377C1A6E9567006153C2 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 6EZW9Z24C3;
 					};
 					06FE37951A6E9567006153C2 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -663,6 +669,7 @@
 				060E0C531A76D07B00A95453 /* User.m in Sources */,
 				060E0C5D1A76D6B500A95453 /* HVMappingRoute.m in Sources */,
 				060E0C601A76D73800A95453 /* HVMappingOperation.m in Sources */,
+				065C14381B0635C100634EB4 /* ImageZoomView.m in Sources */,
 				06AC40181A86783500800860 /* OutlineButton.m in Sources */,
 				06FE37B01A6EB230006153C2 /* AccountCell.m in Sources */,
 				06FE37AC1A6E9E46006153C2 /* AccountManager.m in Sources */,
@@ -794,6 +801,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Hive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -806,6 +814,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Hive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
