@@ -11,6 +11,7 @@
 #import "DumpMapper.h"
 #import "Tweet.h"
 #import "User.h"
+#import "HVDataNode.h"
 #import "Media.h"
 #import "TweetCell.h"
 #import "HVImageBank.h"
@@ -29,34 +30,19 @@ typedef NS_ENUM(NSUInteger, kTweetAction) {
     kTweetActionQuote = 1
 };
 
-typedef NS_ENUM(NSUInteger, kTweetTableCellType) {
-    kTweetTableCellTypeNormal = 1,
-    kTweetTableCellTypeLoader = 2,
-    kTweetTableCellTypeSurvey = 3,
-    kTweetTableCellTypeMore   = 4
-};
-
 NSString * const HVTweetCellIdentifier  = @"TweetCell";
 NSString * const HVMoreCellIdentifier   = @"MoreCell";
 NSString * const HVLoaderCellIdentifier = @"LoaderCell";
 NSString * const HVSurveyCellIdentifier = @"SurveyCell";
 
-@interface HVDataNode : NSObject
-@property (nonatomic, strong) NSDictionary *metaData;
-@property (nonatomic, strong) Tweet *tweet;
-@property (nonatomic, assign) kTweetTableCellType nodeType;
-@end
 
-@implementation HVDataNode
-@end
-
-typedef void (^HVConfigureCellBlock)(UITableViewCell *cell, HVDataNode *dataNode, NSIndexPath *indexPath);
+typedef void (^HVConfigureCellBlock)(UICollectionViewCell *cell, HVDataNode *dataNode, NSIndexPath *indexPath);
 typedef void (^HVNewDataBlock)(NSData *responseData);
 typedef void (^HVErrorBlock)(NSError *error);
 
-@interface TwitterTableViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface TwitterTableViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, copy) HVConfigureCellBlock configureCellBlock;
 @property (nonatomic, copy) HVNewDataBlock newDataReceivedBlock;
@@ -99,9 +85,9 @@ typedef void (^HVErrorBlock)(NSError *error);
     self.popupAnimationSet = [NSMutableSet new];
 #endif
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:refreshControl];
+//    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+//    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+//    [self.collectionView addSubview:refreshControl];
     
 }
 
@@ -166,11 +152,12 @@ typedef void (^HVErrorBlock)(NSError *error);
     self.dataArray = [NSArray new];
     __weak __typeof(self) weakSelf = self;
     
-    self.configureCellBlock = ^(UITableViewCell *cell, HVDataNode *node, NSIndexPath *indexPath) {
+    self.configureCellBlock = ^(UICollectionViewCell *cell, HVDataNode *node, NSIndexPath *indexPath) {
         switch (node.nodeType) {
             case kTweetTableCellTypeNormal:
             {
                 TweetCell *tweetCell = (TweetCell *)cell;
+                tweetCell.dataNode = node;
                 tweetCell.tweetTextView.attributedText = [weakSelf tweetStringFromNode:node];
                 tweetCell.usernameLabel.attributedText = [weakSelf userNameStringFromNode:node];
                 
@@ -269,10 +256,7 @@ typedef void (^HVErrorBlock)(NSError *error);
         
         self.dataArray = [NSArray arrayWithArray:mutableData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView beginUpdates];
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView endUpdates];
-
+            [self.collectionView reloadData];
         });
         self.isLoading = NO;
         
@@ -287,7 +271,7 @@ typedef void (^HVErrorBlock)(NSError *error);
         
         self.dataArray = [NSArray arrayWithArray:temp];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [self.collectionView reloadData];
         });
     }
 }
@@ -324,30 +308,31 @@ typedef void (^HVErrorBlock)(NSError *error);
     // Pass the selected object to the new view controller.
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.dataArray count];
 }
+
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HVDataNode *node = self.dataArray[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self cellIdentifierForCellType:node.nodeType]];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[self cellIdentifierForCellType:node.nodeType] forIndexPath:indexPath];
     self.configureCellBlock (cell, node, indexPath);
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     HVDataNode *node = self.dataArray[indexPath.row];
-
+    CGFloat width = CGRectGetWidth(collectionView.bounds);
+    
 #if USE_SIZE_CACHE
     if (node.nodeType == kTweetTableCellTypeNormal) {
         NSNumber *cachedHeight = self.sizeCache[node.tweet.idStr];
         
         if (cachedHeight != nil) {
-            return [cachedHeight floatValue];
+            return CGSizeMake(width, [cachedHeight floatValue]);
         }
     }
 #endif
@@ -356,7 +341,7 @@ typedef void (^HVErrorBlock)(NSError *error);
     
     switch (node.nodeType) {
         case kTweetTableCellTypeNormal:
-            calculatedHeight = [TweetCell heightForTweet:node.tweet constrainedToWidth:CGRectGetWidth(tableView.bounds)];
+            calculatedHeight = [TweetCell heightForTweet:node.tweet constrainedToWidth:CGRectGetWidth(collectionView.bounds)];
             break;
         case kTweetTableCellTypeLoader:
             calculatedHeight = LOADER_CELL_HEIGHT;
@@ -371,12 +356,11 @@ typedef void (^HVErrorBlock)(NSError *error);
         self.sizeCache[node.tweet.idStr] = @(calculatedHeight);
     }
 #endif
-    
-    return calculatedHeight;
+    return CGSizeMake(width, calculatedHeight);
+
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(nonnull UICollectionViewCell *)cell forItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     HVDataNode *node = self.dataArray[indexPath.row];
     
 #if USE_CELL_ANIMATION
@@ -403,6 +387,7 @@ typedef void (^HVErrorBlock)(NSError *error);
         _cell.imageContainerHeightConstraint.constant = [node.tweet hasPhotoMedia] ? [TweetCell defaultImageHeight] : [TweetCell defaultMinimumImagecontainerHeight];
     }
 }
+
 
 - (HVDataNode *) lastTweetNodeFromArray:(NSArray *) array {
     if (array.count) {
@@ -453,9 +438,9 @@ typedef void (^HVErrorBlock)(NSError *error);
         [DataManager postFavoriteId:node.tweet.idStr inAccount:self.currentAccount withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
             node.tweet.favoriteCount += 1;
             node.tweet.favorited = YES;
-            TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+            TweetCell *cell = (TweetCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                if ([[self.tableView visibleCells] containsObject:cell]) {
+                if ([[self.collectionView visibleCells] containsObject:cell]) {
                     [cell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount] forState:UIControlStateNormal];
                     [cell.favButton setImage:[UIImage imageNamed:@"star_on.png"] forState:UIControlStateNormal];
                 }
@@ -465,9 +450,9 @@ typedef void (^HVErrorBlock)(NSError *error);
         [DataManager destroyFavoriteId:node.tweet.idStr inAccount:self.currentAccount withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
             node.tweet.favoriteCount -= 1;
             node.tweet.favorited = NO;
-            TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+            TweetCell *cell = (TweetCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                if ([[self.tableView visibleCells] containsObject:cell]) {
+                if ([[self.collectionView visibleCells] containsObject:cell]) {
                     [cell.favButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.favoriteCount] forState:UIControlStateNormal];
                     [cell.favButton setImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
                 }
@@ -539,9 +524,9 @@ typedef void (^HVErrorBlock)(NSError *error);
             [DataManager postRetweetForId:node.tweet.idStr inAccount:self.currentAccount withCompletion:^(NSData *responseData, NSHTTPURLResponse *urlResponse) {
                 node.tweet.retweetCount += 1;
                 node.tweet.retweeted = YES;
-                TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
+                TweetCell *cell = (TweetCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([[self.tableView visibleCells] containsObject:cell]) {
+                    if ([[self.collectionView visibleCells] containsObject:cell]) {
                         [cell.repostButton setTitle:[NSString stringWithFormat:@"%li", (long)node.tweet.retweetCount] forState:UIControlStateNormal];
                         [cell.repostButton setImage:[UIImage imageNamed:@"megaphone_on.png"] forState:UIControlStateNormal];
                     }

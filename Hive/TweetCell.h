@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class Tweet, User;
+@class Tweet, User, HVDataNode;
 
-@interface TweetCell : UITableViewCell
+@interface TweetCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *subbgView;
 
@@ -24,6 +24,8 @@
 @property (nonatomic, weak) IBOutlet UIButton *answerButton;
 @property (nonatomic, weak) IBOutlet UIButton *favButton;
 @property (nonatomic, weak) IBOutlet UIButton *repostButton;
+
+@property (nonatomic, strong) HVDataNode *dataNode;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageContainerHeightConstraint;
 

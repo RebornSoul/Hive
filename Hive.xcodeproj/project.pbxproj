@@ -46,6 +46,8 @@
 		061E17D31A84FF8F00F33AC5 /* reply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17CD1A84FF8F00F33AC5 /* reply@2x.png */; };
 		061E17D41A84FF8F00F33AC5 /* reply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 061E17CE1A84FF8F00F33AC5 /* reply@3x.png */; };
 		061E17D71A85068800F33AC5 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E17D61A85068800F33AC5 /* Media.m */; };
+		064E58521C6363480069EB8B /* HVListLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 064E58511C6363480069EB8B /* HVListLayout.m */; };
+		064E58551C725D090069EB8B /* HVDataNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 064E58541C725D090069EB8B /* HVDataNode.m */; };
 		06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06584FAF1A76BCD9001974AB /* ContainerViewController.m */; };
 		065C14381B0635C100634EB4 /* ImageZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C14371B0635C100634EB4 /* ImageZoomView.m */; };
 		066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DD7D21A752974003862CF /* TwitterTableViewController.m */; };
@@ -143,6 +145,10 @@
 		061E17CE1A84FF8F00F33AC5 /* reply@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reply@3x.png"; sourceTree = "<group>"; };
 		061E17D51A85068800F33AC5 /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Media.h; path = "Object model/Media.h"; sourceTree = "<group>"; };
 		061E17D61A85068800F33AC5 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Media.m; path = "Object model/Media.m"; sourceTree = "<group>"; };
+		064E58501C6363480069EB8B /* HVListLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVListLayout.h; path = Layouts/HVListLayout.h; sourceTree = "<group>"; };
+		064E58511C6363480069EB8B /* HVListLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HVListLayout.m; path = Layouts/HVListLayout.m; sourceTree = "<group>"; };
+		064E58531C725D090069EB8B /* HVDataNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HVDataNode.h; path = "Object model/HVDataNode.h"; sourceTree = "<group>"; };
+		064E58541C725D090069EB8B /* HVDataNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HVDataNode.m; path = "Object model/HVDataNode.m"; sourceTree = "<group>"; };
 		06584FAE1A76BCD9001974AB /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		06584FAF1A76BCD9001974AB /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		065C14361B0635C100634EB4 /* ImageZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageZoomView.h; path = Source/ImageZoomView.h; sourceTree = "<group>"; };
@@ -232,6 +238,8 @@
 				060E0C4F1A76D06A00A95453 /* Tweet.m */,
 				060E0C511A76D07B00A95453 /* User.h */,
 				060E0C521A76D07B00A95453 /* User.m */,
+				064E58531C725D090069EB8B /* HVDataNode.h */,
+				064E58541C725D090069EB8B /* HVDataNode.m */,
 			);
 			name = "Object model";
 			sourceTree = "<group>";
@@ -374,6 +382,8 @@
 				066DD7DE1A7529DA003862CF /* PaginationCell.m */,
 				061E17961A840A1400F33AC5 /* RoundedImageView.h */,
 				061E17971A840A1400F33AC5 /* RoundedImageView.m */,
+				064E58501C6363480069EB8B /* HVListLayout.h */,
+				064E58511C6363480069EB8B /* HVListLayout.m */,
 			);
 			name = "Tweet table";
 			sourceTree = "<group>";
@@ -557,7 +567,7 @@
 		06FE37751A6E9567006153C2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Yury Nechaev";
 				TargetAttributes = {
 					06FE377C1A6E9567006153C2 = {
@@ -651,6 +661,7 @@
 				06FE37891A6E9567006153C2 /* ViewController.m in Sources */,
 				066DD7D91A75299B003862CF /* MoreToSeeCell.m in Sources */,
 				066DD7D31A752974003862CF /* TwitterTableViewController.m in Sources */,
+				064E58551C725D090069EB8B /* HVDataNode.m in Sources */,
 				060E0C6F1A76E71200A95453 /* HVMappingResult.m in Sources */,
 				061E17D71A85068800F33AC5 /* Media.m in Sources */,
 				06FE37BC1A74F0CD006153C2 /* DataManager.m in Sources */,
@@ -661,6 +672,7 @@
 				060E0C571A76D2A800A95453 /* TwitterFeedMapper.m in Sources */,
 				06584FB01A76BCD9001974AB /* ContainerViewController.m in Sources */,
 				060E0C671A76D99300A95453 /* HVRelationshipMapping.m in Sources */,
+				064E58521C6363480069EB8B /* HVListLayout.m in Sources */,
 				06AC40141A855E3400800860 /* ImageViewerController.m in Sources */,
 				06FE37831A6E9567006153C2 /* main.m in Sources */,
 				060E0C501A76D06A00A95453 /* Tweet.m in Sources */,
@@ -738,6 +750,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -805,6 +818,7 @@
 				INFOPLIST_FILE = Hive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "YN.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -818,6 +832,7 @@
 				INFOPLIST_FILE = Hive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "YN.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -836,6 +851,7 @@
 				);
 				INFOPLIST_FILE = HiveTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "YN.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hive.app/Hive";
 			};
@@ -851,6 +867,7 @@
 				);
 				INFOPLIST_FILE = HiveTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "YN.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hive.app/Hive";
 			};

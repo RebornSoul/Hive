@@ -9,6 +9,7 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import "User.h"
+#import "HVDataNode.h"
 
 // Font sizes
 const CGFloat HVTweetCellTweetFontSize = 14.0f;
@@ -27,7 +28,16 @@ const CGFloat HVTweetCellAvatarHeight = 40.0f;
 const CGFloat HVTweetCellDefaultImageContainerHeight = 200.0f;
 const CGFloat HVTweetCellMinimumImageContainerHeight = 8.0f;
 
+@interface TweetCell ()
+@end
+
 @implementation TweetCell
+
+- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+    CGSize prefferedSize = layoutAttributes.frame.size;
+    prefferedSize.height = [[self class] heightForTweet:self.dataNode.tweet constrainedToWidth:CGRectGetWidth(layoutAttributes.frame)];
+    return layoutAttributes;
+}
 
 + (CGFloat) heightForTweet:(Tweet *)tweet constrainedToWidth:(CGFloat)width {
     
@@ -102,11 +112,6 @@ const CGFloat HVTweetCellMinimumImageContainerHeight = 8.0f;
 //    self.subcontainerView.layer.masksToBounds = YES;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 #pragma mark - fonts
 
